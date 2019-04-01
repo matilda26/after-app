@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "baseUrl": "./",
+        "paths": {
+            "@navigators/*": [
+                "src/navigators/*"
+            ],
+            "@views/*": [
+                "src/views/*"
+            ],
+            "@components/*": [
+                "src/components/*"
+            ],
+        },
+        "exclude": [
+            "node_modules",
+        ]
+    }
+}
