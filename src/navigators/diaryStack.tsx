@@ -1,25 +1,23 @@
-import Dashboard from '@views/dashboard'
-import LoginScreen from '@views/login'
-import React from 'react'
+import DiaryListing from '@views/diary/diaryListing'
+import DiaryDetail from '@views/diary/diaryDetail'
 import { createStackNavigator } from 'react-navigation'
-import FooterTabNavigator from './footerTabNavigator';
 
-const HomeStack = createStackNavigator(
+const DiaryStack = createStackNavigator(
   {
-    Login: {
-      screen: LoginScreen,
+    DiaryDetail: {
+      screen: DiaryDetail,
       navigationOptions: {
         header: null,
       },
     },
-    Home: {
-      screen: FooterTabNavigator,
+    DiaryListing: {
+      screen: DiaryListing,
       navigationOptions: {
         header: null,
       },
     },
   }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'DiaryListing',
     defaultNavigationOptions: {
       // headerStyle: {
       //   backgroundColor: colours.white.base,
@@ -33,4 +31,4 @@ const HomeStack = createStackNavigator(
   },
 )
 
-export default HomeStack
+export default DiaryStack

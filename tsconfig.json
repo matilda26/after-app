@@ -18,6 +18,9 @@
             "@components/*": [
                 "src/components/*"
             ],
+            "@styles/*": [
+                "src/styles/*"
+            ],
         },
         "exclude": [
             "node_modules",

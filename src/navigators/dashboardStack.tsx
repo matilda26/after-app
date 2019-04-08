@@ -1,25 +1,16 @@
 import Dashboard from '@views/dashboard'
-import LoginScreen from '@views/login'
-import React from 'react'
 import { createStackNavigator } from 'react-navigation'
-import FooterTabNavigator from './footerTabNavigator';
 
-const HomeStack = createStackNavigator(
+const DashboardStack = createStackNavigator(
   {
-    Login: {
-      screen: LoginScreen,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    Home: {
-      screen: FooterTabNavigator,
+    Dashboard: {
+      screen: Dashboard,
       navigationOptions: {
         header: null,
       },
     },
   }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Dashboard',
     defaultNavigationOptions: {
       // headerStyle: {
       //   backgroundColor: colours.white.base,
@@ -33,4 +24,4 @@ const HomeStack = createStackNavigator(
   },
 )
 
-export default HomeStack
+export default DashboardStack

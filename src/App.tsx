@@ -16,6 +16,9 @@ class App extends Component<IProps> {
   async componentDidMount() {
     await Font.loadAsync({
       'fontello': require('../assets/fonts/fontello.ttf'),
+      'Gotham-Book': require('../assets/fonts/Gotham-Book.ttf'),
+      'Gotham-Medium': require('../assets/fonts/Gotham-Medium.ttf'),
+      'Gotham-Bold': require('../assets/fonts/Gotham-Bold.ttf')
     });
     this.setState({
       fontLoaded: true,
