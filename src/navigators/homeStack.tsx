@@ -1,8 +1,6 @@
-import Dashboard from '@views/dashboard'
 import LoginScreen from '@views/login'
-import React from 'react'
 import { createStackNavigator } from 'react-navigation'
-import FooterTabNavigator from './footerTabNavigator';
+import FooterTabNavigator from '@navigators/footerTabNavigator'
 
 const HomeStack = createStackNavigator(
   {
@@ -20,16 +18,6 @@ const HomeStack = createStackNavigator(
     },
   }, {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      // headerStyle: {
-      //   backgroundColor: colours.white.base,
-      //   height: 50,
-      //   borderBottomWidth: 1,
-      //   borderBottomColor: colours.lightGrey.base,
-      //   paddingTop: spacing.xl,
-      // },
-      //   headerTitle: <Logo />,
-    },
   },
 )
 

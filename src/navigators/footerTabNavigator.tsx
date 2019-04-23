@@ -1,20 +1,20 @@
 import IconTabItem from '@components/navigation/iconTabItem'
-import DashboardStack from '@navigators/dashboardStack'
+import MiddleStack from '@navigators/middleStack'
+import StartStack from '@navigators/startStack'
+import EndStack from '@navigators/endStack'
 import React from 'react'
 import { createBottomTabNavigator } from 'react-navigation'
-import DiaryStack from './diaryStack'
-import { colours } from '@styles/index'
+import { colours, spacing, typeSizes, fonts } from '@styles/index'
 
 const FooterTabNavigator = createBottomTabNavigator(
   {
-    Diary: {
-      screen: DiaryStack,
+    StartTab: {
+      screen: StartStack,
       navigationOptions: {
         header: null,
         tabBarIcon: ({ focused }: { focused: boolean }) => (
           <IconTabItem
-            iconName={'diary-tab'}
-            tabName='Premium'
+            iconName={'start'}
             focused={focused}
           />
         ),
@@ -23,61 +23,48 @@ const FooterTabNavigator = createBottomTabNavigator(
         },
       },
     },
-    Home: {
-      screen: DashboardStack,
+    MiddleTab: {
+      screen: MiddleStack,
       navigationOptions: {
         header: null,
         tabBarIcon: ({ focused }: { focused: boolean }) => (
           <IconTabItem
-            iconName={focused ? 'mood-tab-active' : 'mood-tab'}
-            tabName='Home'
+            iconName={'middle'}
             focused={focused}
           />
         ),
         tabBarOnPress: ({ defaultHandler }) => {
           defaultHandler()
         },
-        // headerRight: <SettingsIcon />,
       },
     },
-    // Goals: {
-    //   screen: GoalStack,
-    //   navigationOptions: {
-    //     header: null,
-    //     tabBarIcon: ({ focused }: { focused: boolean }) => (
-    //       <IconTabItem
-    //         iconName={focused ? 'star-active' : 'star'}
-    //         tabName='Goals'
-    //         focused={focused}
-    //       />
-    //     ),
-    //     tabBarOnPress: ({ navigation }) => {
-    //       navigation.setParams({ previousRoute: 'GoalListing' })
-    //       navigation.navigate('GoalListing')
-    //     },
-    //   },
-    // },
+    EndTab: {
+      screen: EndStack,
+      navigationOptions: {
+        header: null,
+        tabBarIcon: ({ focused }: { focused: boolean }) => (
+          <IconTabItem
+            iconName={'end'}
+            focused={focused}
+          />
+        ),
+        tabBarOnPress: ({ defaultHandler }) => {
+          defaultHandler()
+        },
+      },
+    },
   }, {
-    initialRouteName: 'Home',
-    // defaultNavigationOptions: {
-    //   headerStyle: {
-    //     backgroundColor: colours.white.base,
-    //     height: 50,
-    //     borderBottomWidth: 0,
-    //     paddingTop: spacing.xl,
-    //   },
-    //   headerTitle: <Logo />,
-    // },
+    initialRouteName: 'MiddleTab',
+    tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {
         height: 60,
-        borderTopWidth: 1,
+        borderTopWidth: 2,
         borderTopColor: colours.olive.base,
       },
       showIcon: true,
       showLabel: false,
       activeBackgroundColor: colours.olive.base,
-
       safeAreaInset: { bottom: 'never', top: 'never' }
     },
   },
