@@ -1,15 +1,21 @@
 import StartDashboard from '@views/start/startDashboard'
 import { createStackNavigator } from 'react-navigation'
 import { colours, spacing, typeSizes, fonts } from '@styles/index'
+import StartFacts from '@views/start/startFacts'
+import React from 'react'
+import BackArrow from '@components/navigation/backArrow'
 
 const StartStack = createStackNavigator(
   {
     StartDashboard: {
       screen: StartDashboard,
-      navigationOptions: {
-        title: 'The Start'
-      },
     },
+    StartFacts: {
+      screen: StartFacts,
+      navigationOptions: {
+        headerLeft: <BackArrow destination={'StartDashboard'} />
+      }
+    }
   }, {
     initialRouteName: 'StartDashboard',
     defaultNavigationOptions: {
@@ -22,6 +28,7 @@ const StartStack = createStackNavigator(
         borderBottomWidth: 2,
         borderBottomColor: colours.olive.base,
       },
+      headerTitle: 'The Start',
       headerTitleStyle: {
         color: colours.olive.base,
         fontSize: typeSizes.h2,

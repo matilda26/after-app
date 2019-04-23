@@ -18,3 +18,7 @@ class DiaryListing extends Component<IProps> {
 }
 
 export default DiaryListing
+
+
+// if no entries, create entry
+// calendar view

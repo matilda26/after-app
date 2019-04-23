@@ -54,7 +54,7 @@ const FooterTabNavigator = createBottomTabNavigator(
       },
     },
   }, {
-    initialRouteName: 'MiddleTab',
+    initialRouteName: 'StartTab',
     tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {
