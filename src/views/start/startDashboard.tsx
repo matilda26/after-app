@@ -12,7 +12,7 @@ class StartDashboard extends Component<IProps> {
     render() {
         return (
             <ScreenWrapper>
-                <PageHeader title={'The Start'} subText={"Let's start with the beginning of you."} />
+                <PageHeader subText={"Let's start with the beginning of you."} />
             </ScreenWrapper>
         )
     }

@@ -11,7 +11,7 @@ class DiaryListing extends Component<IProps> {
     render() {
         return (
             <ScreenWrapper>
-                <PageHeader subText="What's happening now? In this moment." />
+                <PageHeader subText="What's happening now? Right here in this moment." />
             </ScreenWrapper>
         )
     }
