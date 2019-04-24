@@ -59,7 +59,7 @@ const FooterTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         height: 60,
-        borderTopWidth: 2,
+        borderTopWidth: 0,
         borderTopColor: colours.olive.base,
       },
       showIcon: true,

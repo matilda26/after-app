@@ -14,8 +14,24 @@ export const colours = {
         base: '#FC9AB1',
         light: '#FDBEC8',
     },
+    red: {
+        dark: '#861730',
+        base: '#c92337',
+        light: '#d14754',
+    },
+    orange: {
+        dark: '#b0452b',
+        base: '#e36032',
+        light: '#e88659',
+    },
+    cream: {
+        dark: '#ecd0c7',
+        base: '#fee1d6',
+        light: '#fefbf1',
+    },
     lightGrey: {
-        base: '#D9D7D8'
+        base: '#D9D7D8',
+        light: '#f3f3f3'
     },
     white: {
         base: '#ffffff'

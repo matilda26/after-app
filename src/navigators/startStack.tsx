@@ -1,4 +1,4 @@
-import StartDashboard from '@views/start/startDashboard'
+import StartDashboard from '@views/start/startDashboard/index'
 import { createStackNavigator } from 'react-navigation'
 import { colours, spacing, typeSizes, fonts } from '@styles/index'
 import StartFacts from '@views/start/startFacts'
@@ -25,7 +25,7 @@ const StartStack = createStackNavigator(
         shadowOpacity: 0,
         elevation: 0,
         paddingTop: spacing.xl,
-        borderBottomWidth: 2,
+        borderBottomWidth: 0,
         borderBottomColor: colours.olive.base,
       },
       headerTitle: 'The Start',

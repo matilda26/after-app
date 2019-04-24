@@ -109,6 +109,20 @@
       "search": [
         "middle"
       ]
+    },
+    {
+      "uid": "5f3c7aad0ebd197d87ba903d0bea1e33",
+      "css": "tick",
+      "code": 59395,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M390 1000L0 667 74.5 580 330.9 798.9C383.5 648.6 516.4 320.7 764.2 0L855 70.2C540 477.5 415.5 909.4 414.3 913.9Z",
+        "width": 855
+      },
+      "search": [
+        "tick"
+      ]
     }
   ]
 }

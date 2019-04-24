@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
-import { Wrapper, ButtonIcon, Label } from './styles'
+import { Wrapper, ButtonImage, Label, ImageWrapper, LabelWrapper, Shadow, SubLabel } from './styles'
 
 export interface IProps {
-  icon: string
+  image: string
   label: string
-  active: boolean
-  colour: string
+  subLabel: string
 }
 
 class MainButton extends Component<IProps> {
 
   render() {
 
-    const { active, icon, label, colour } = this.props
+    const { image, label, subLabel } = this.props
+
     return (
-      <Wrapper colour={colour}>
-        <ButtonIcon name={icon} active={active} />
-        <Label active={active}>{label}</Label>
+      <Wrapper >
+          <ImageWrapper>
+            <ButtonImage source={image} />
+          </ImageWrapper>
+          <LabelWrapper>
+            <Label>{label}</Label>
+            <SubLabel>{subLabel}</SubLabel>
+          </LabelWrapper>
+        <Shadow />
       </Wrapper>
     )
   }

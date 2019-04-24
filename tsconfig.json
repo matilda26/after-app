@@ -9,6 +9,9 @@
         "esModuleInterop": true,
         "baseUrl": "./",
         "paths": {
+            "@assets/*": [
+                "src/assets/*"
+            ],
             "@navigators/*": [
                 "src/navigators/*"
             ],
