@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import RootStack from '@navigators/rootStack'
 import { NavigationScreenProp } from 'react-navigation'
 import { Font } from 'expo'
+import Login from '@components/login'
+import { connect } from 'react-redux'
 
-import { withAuthenticator } from 'aws-amplify-react-native'
 import Amplify from '@aws-amplify/core'
 import config from './aws-exports'
-import Login from '@components/login'
 Amplify.configure(config)
 
 interface IProps {
@@ -35,14 +35,22 @@ class App extends Component<IProps> {
     return (
       <>
         {this.state.fontLoaded && (
-          <RootStack
-            navigation={this.props.navigation}
-            screenProps={this.props}
-          />
+          <Login>
+            <RootStack
+              navigation={this.props.navigation}
+              screenProps={this.props}
+            />
+          </Login>
         )}
       </>
     )
   }
 }
-
-export default withAuthenticator(App)
+const mapStateToProps = state => {
+  return {
+    user: state.loginState.user,
+  }
+}
+export default connect(
+  mapStateToProps,
+)(App)

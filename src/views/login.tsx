@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import Login from '@components/login'
 
 interface IProps {
 
 }
 
-class Login extends Component<IProps> {
+class LoginScreen extends Component<IProps> {
 
     render() {
         return (
             <View>
-                <Text>Hello Login</Text>
+                <Login />
             </View>
         )
     }
 }
 
-export default Login
+export default LoginScreen

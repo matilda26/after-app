@@ -17,7 +17,7 @@ class BackArrow extends Component<IProps> {
 
     return (
       <Wrapper>
-        <Arrow name='backArrow' />
+        <Arrow name='angle-left' />
       </Wrapper>
     )
   }

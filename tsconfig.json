@@ -12,17 +12,23 @@
             "@assets/*": [
                 "src/assets/*"
             ],
-            "@navigators/*": [
-                "src/navigators/*"
-            ],
-            "@views/*": [
-                "src/views/*"
-            ],
             "@components/*": [
                 "src/components/*"
             ],
+            "@constants/*": [
+                "src/constants/*"
+            ],
+            "@navigators/*": [
+                "src/navigators/*"
+            ],
             "@styles/*": [
                 "src/styles/*"
+            ],
+            "@state/*": [
+                "src/state/*"
+            ],
+            "@views/*": [
+                "src/views/*"
             ],
         },
         "exclude": [

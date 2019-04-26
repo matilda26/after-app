@@ -123,6 +123,12 @@
       "search": [
         "tick"
       ]
+    },
+    {
+      "uid": "f3f90c8c89795da30f7444634476ea4f",
+      "css": "angle-left",
+      "code": 61700,
+      "src": "fontawesome"
     }
   ]
 }
