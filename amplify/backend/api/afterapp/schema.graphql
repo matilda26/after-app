@@ -1,0 +1,9 @@
+type CloseFriend @model {
+  id: ID!
+  name: String!
+  howYouMet: String
+  whenYouMet: String
+  favouriteSaying: String
+  favouriteTraits: String
+  message: String
+}
