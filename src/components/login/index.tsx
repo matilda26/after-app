@@ -6,9 +6,9 @@ import LoginHeader from './header'
 import NewPassword from './newPassword'
 import OnBoardingSection from './onBoarding'
 import SignInForm from './signInForm'
-import { KeyboardAvoidView, Wrapper } from './styles'
+import { KeyboardAvoidView, ScrollWrapper } from './styles'
 import { userLoggedIn, userPasswordReset, userRequiresNewPassword, userResetCodeSent } from '@state/actions/login'
-
+import { spacing } from '@styles/index'
 
 export interface IProps {
   children: any
@@ -83,31 +83,28 @@ class Login extends Component<IProps> {
       return <>{this.props.children}</>
     } else {
       return (
-        <KeyboardAvoidView behavior='padding'>
-          <Wrapper ref={(ref) => this.scrollView = ref}>
-            {(this.props.resetPassword && !this.props.resetCodeSent) && (
-              <>
-                <LoginHeader hideBackArrow={false} navigateBack={() => this.navigateBackToLogin()} />
-                <ForgottenPassword />
-              </>
-            )}
+        <ScrollWrapper ref={(ref) => this.scrollView = ref}>
+          {(this.props.resetPassword && !this.props.resetCodeSent) && (
+            <>
+              <LoginHeader hideBackArrow={false} navigateBack={() => this.navigateBackToLogin()} title='Forgot password' subTitle="Enter your email address and we'll send you a temporary password." />
+              <ForgottenPassword />
+            </>
+          )}
 
-            {(this.props.userChallenge || this.props.resetCodeSent) && (
-              <>
-                <LoginHeader hideBackArrow={false} navigateBack={() => this.navigateBackToResetPassword()} />
-                <NewPassword includeCode={this.props.resetCodeSent} />
-              </>
-            )}
+          {(this.props.userChallenge || this.props.resetCodeSent) && (
+            <>
+              <LoginHeader hideBackArrow={false} navigateBack={() => this.navigateBackToResetPassword()} title='New password' />
+              <NewPassword includeCode={this.props.resetCodeSent} />
+            </>
+          )}
 
-            {!this.props.userChallenge && !this.props.resetPassword && (
-              <>
-                <LoginHeader hideBackArrow={true} />
-                <OnBoardingSection />
-                <SignInForm />
-              </>
-            )}
-          </Wrapper>
-        </KeyboardAvoidView>
+          {!this.props.userChallenge && !this.props.resetPassword && (
+            <>
+              <LoginHeader hideBackArrow={true} title='Login' />
+              <SignInForm />
+            </>
+          )}
+        </ScrollWrapper>
       )
     }
   }

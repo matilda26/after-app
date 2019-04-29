@@ -1,16 +1,29 @@
 import { colours, fonts, spacing, typeSizes } from '@styles/index'
 import styled from 'styled-components'
+import { Dimensions } from 'react-native'
 import { KeyboardAvoidingView, Text, TextInput, TouchableHighlight, TouchableOpacity, View, ScrollView } from 'react-native'
 
-export const Wrapper = styled(ScrollView)`
-  flex:1;
+var { height, width } = Dimensions.get('window')
+
+export const ScrollWrapper = styled(ScrollView)`
+  background-color: ${colours.olive.base};
+  padding-horizontal: ${spacing.md};
 `
 export const KeyboardAvoidView = styled(KeyboardAvoidingView)`
-  flex: 1;
+  height: 100%;
 `
 export const SectionWrapper = styled(View)`
+  flex: 1;
+  flex-direction: column;
+`
+export const Section = styled(View)`
+
+`
+export const SectionLower = styled(View)`
+  flex: 1;
+  border: 2px solid pink;
   justify-content: flex-end;
-  margin-bottom: ${spacing.xxl};
+  flex-direction: column;
 `
 export const InputWrapper = styled(View)`
   width: 100%;
@@ -23,13 +36,13 @@ export const CheckboxWrapper = styled(View)`
 `
 export const InputField = styled(TextInput)`
   height: 48;
-  background-color: ${colours.white.base};
   width: 100%;
   padding-left: ${spacing.md};
   padding-right: ${spacing.md};
-  border-radius: ${spacing.sm};
+  border-bottom-width: 2;
+  border-bottom-color: ${colours.white.base};
   font-size: ${typeSizes.large};
-  color: ${colours.olive.base};
+  color: ${colours.white.base};
   font-family: ${fonts.book};
 
   ${(props: any) => props.hasErrors ? `
@@ -40,16 +53,16 @@ export const InputField = styled(TextInput)`
   };
 `
 export const SubmitButton = styled(TouchableOpacity)`
-  background-color: ${(props: any) => props.disabled ? colours.lightGrey.base : colours.red.base};
-  border-radius: ${spacing.xl};
+  background-color: ${(props: any) => props.disabled ? colours.olive.light : colours.white.base};
   height: 64;
   align-items: center;
   justify-content: center;
   margin-left: ${spacing.md};
   margin-right: ${spacing.md};
+  border-radius: ${spacing.xl};
 `
 export const ButtonWrapper = styled(TouchableHighlight)`
-  margin-top: ${spacing.lg};
+  margin-top: ${spacing.xxl};
   ${(props: any) => props.center ? `
   align-items: center;
   ` : ``};
@@ -62,13 +75,20 @@ export const ErrorMessage = styled(Text)`
   padding-top: ${spacing.xxs};
 `
 export const ButtonText = styled(Text)`
-  font-family: ${fonts.book};
-  font-size: ${typeSizes.body};
-  color: ${(props: any) => props.disabled ? colours.olive.base : colours.white.base};
+  font-family: ${(props: any) => props.disabled ? fonts.book : fonts.bold};
+  font-size: ${typeSizes.large};
+  color: ${colours.olive.base};
 `
 export const Spacer = styled(View)`
   height: ${spacing.lg};
 `
 export const Label = styled(Text)`
+  font-size: ${typeSizes.body};
+  color: ${colours.white.base};
+  font-family: ${(props: any) => props.light ? fonts.book : fonts.medium};
+`
+export const SubLabel = styled(Text)`
   font-size: ${typeSizes.small};
+  color: ${colours.white.base};
+  font-family: ${fonts.book};
 `

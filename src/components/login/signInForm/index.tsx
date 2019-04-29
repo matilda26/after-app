@@ -15,7 +15,7 @@ import React, { Component } from 'react'
 import { KeyboardAvoidingView, Linking, Text } from 'react-native'
 
 import { connect } from 'react-redux'
-import { ButtonText, ButtonWrapper, CheckboxWrapper, ErrorMessage, InputField, InputWrapper, SectionWrapper, Spacer, SubmitButton, Label } from '../styles'
+import { ButtonText, ButtonWrapper, CheckboxWrapper, ErrorMessage, InputField, InputWrapper, SectionWrapper, Spacer, SubmitButton, Label, SubLabel, Section, SectionLower } from '../styles'
 import { LoaderWrapper, TextLink } from './styles'
 
 interface IProps {
@@ -152,39 +152,53 @@ class SignInForm extends Component<IProps, IState> {
   render() {
     return (
       <SectionWrapper>
-        <InputWrapper>
-          <Label>Email address</Label>
-          <InputField hasErrors={this.state.hasErrors && this.state.usernameErrorMessage} keyboardType='email-address' autoCapitalize='none' value={this.state.username} onChangeText={(text) => this.setState({ username: text })} textContentType='emailAddress' />
-          <ErrorMessage>{this.state.usernameErrorMessage}</ErrorMessage>
-        </InputWrapper>
-        <InputWrapper>
-          <Label>Password (8+ characters)</Label>
-          <InputField hasErrors={this.state.hasErrors && this.state.passwordErrorMessage} textContentType='password' onChangeText={(text) => this.setState({ password: text })} secureTextEntry={true} />
-          <ErrorMessage>{this.state.passwordErrorMessage}</ErrorMessage>
-        </InputWrapper>
-        <CheckboxWrapper>
-          <CheckBox disabled={this.isInSignInProcess()} onChange={() => this.handleCheckBoxChange()}>
-            <Label>
-              I agree to the <TextLink onPress={() => this.handleClick(TERMS_URL)}>Terms of Use</TextLink> and <TextLink onPress={() => this.handleClick(PRIVACY_URL)}>Privacy Policy</TextLink>
-            </Label>
-          </CheckBox>
-        </CheckboxWrapper>
-        <ButtonWrapper>
-          <SubmitButton disabled={!this.isValidLoginState()} onPress={() => this.handleSignIn()}>
-            {!(this.props.httpState.loading && this.props.httpState.source === 'login') && (
-              <ButtonText disabled={!this.isValidLoginState()}>Sign in</ButtonText>
-            )}
-            {/* {this.props.httpState.loading && this.props.httpState.source === 'login' && (
-              <LoaderWrapper>
-                <Loader type='button' width={38} height={32} />
-              </LoaderWrapper>
-            )} */}
-          </SubmitButton>
-        </ButtonWrapper>
-        <ButtonWrapper center>
-          <TextLink weight={100} onPress={() => this.handlePasswordReset()}>Forgot Password?</TextLink>
-        </ButtonWrapper>
-        <Spacer />
+        <Section>
+          <InputWrapper>
+            <Label>Email address</Label>
+            <InputField
+              hasErrors={this.state.hasErrors && this.state.usernameErrorMessage}
+              keyboardType='email-address'
+              autoCapitalize='none'
+              value={this.state.username}
+              onChangeText={(text) => this.setState({ username: text })}
+              textContentType='emailAddress'
+              selectionColor={colours.white.base}
+            />
+            <ErrorMessage>{this.state.usernameErrorMessage}</ErrorMessage>
+          </InputWrapper>
+          <InputWrapper>
+            <Label>Password</Label>
+            <SubLabel>8+ characters</SubLabel>
+            <InputField
+              hasErrors={this.state.hasErrors && this.state.passwordErrorMessage}
+              textContentType='password'
+              onChangeText={(text) => this.setState({ password: text })}
+              secureTextEntry={true}
+              selectionColor={colours.white.base}
+            />
+            <ErrorMessage>{this.state.passwordErrorMessage}</ErrorMessage>
+          </InputWrapper>
+        </Section>
+        <SectionLower>
+          <CheckboxWrapper>
+            <CheckBox disabled={this.isInSignInProcess()} onChange={() => this.handleCheckBoxChange()}>
+              <Label light>
+                I agree to the <TextLink onPress={() => this.handleClick(TERMS_URL)}>Terms of Use</TextLink> and <TextLink onPress={() => this.handleClick(PRIVACY_URL)}>Privacy Policy</TextLink>
+              </Label>
+            </CheckBox>
+          </CheckboxWrapper>
+          <ButtonWrapper>
+            <SubmitButton disabled={!this.isValidLoginState()} onPress={() => this.handleSignIn()}>
+              {!(this.props.httpState.loading && this.props.httpState.source === 'login') && (
+                <ButtonText disabled={!this.isValidLoginState()}>Sign in</ButtonText>
+              )}
+            </SubmitButton>
+          </ButtonWrapper>
+          <ButtonWrapper center>
+            <TextLink onPress={() => this.handlePasswordReset()}>Forgot Password?</TextLink>
+          </ButtonWrapper>
+          <Spacer />
+        </SectionLower>
       </SectionWrapper>
     )
   }

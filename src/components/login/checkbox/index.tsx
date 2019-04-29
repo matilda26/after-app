@@ -1,11 +1,12 @@
 import React, { PureComponent, ReactNode } from 'react'
-import Icon from 'react-native-vector-icons/dist/FontAwesome'
-import { CheckBoxContainer, CheckBoxTextContainer, CheckBoxTick } from './styles'
+import Icon from '@components/icon'
+import { CheckBoxContainer, CheckBoxTextContainer, CheckBoxTick, Tick } from './styles'
 
 interface IProps {
-  checked?: boolean,
-  children: ReactNode,
+  checked?: boolean
+  children: ReactNode
   onChange?: () => void
+  disabled: boolean
 }
 
 class CheckBox extends PureComponent<IProps> {
@@ -54,7 +55,7 @@ class CheckBox extends PureComponent<IProps> {
         onPress={() => this.handleOnPress()}
       >
         <CheckBoxTick>
-          {this.state.isChecked ? (<Icon name='check' size={24} />) : false}
+          {this.state.isChecked ? (<Tick name='tick' />) : false}
         </CheckBoxTick>
         <CheckBoxTextContainer>{children}</CheckBoxTextContainer>
       </CheckBoxContainer>

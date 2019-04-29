@@ -1,27 +1,26 @@
 import { colours, fonts, spacing, typeSizes } from '@styles/index'
 import { Text, TouchableOpacity, View } from 'react-native'
 import styled from 'styled-components'
+import Icon from '@components/icon';
 
-const CheckBoxContainer = styled(TouchableOpacity)`
+export const CheckBoxContainer = styled(TouchableOpacity)`
   flex-direction: row;
 `
-
-const CheckBoxTick = styled(View)`
+export const CheckBoxTick = styled(View)`
   width: 24;
   height: 24;
   border-radius: 6;
-  background-color: ${colours.white.base};
+  border: 2px solid ${colours.white.base};
   margin-right: ${spacing.md};
+  align-items: center;
+  justify-content: center;
 `
-
-const CheckBoxTextContainer = styled(View)`
+export const CheckBoxTextContainer = styled(View)`
   color: ${colours.olive.base};
   font-family: ${fonts.book};
   font-size: ${typeSizes.small};
 `
-
-export {
-  CheckBoxContainer,
-  CheckBoxTextContainer,
-  CheckBoxTick,
-}
+export const Tick = styled(Icon)`
+  font-size: ${typeSizes.large};
+  color: ${colours.white.base};
+`

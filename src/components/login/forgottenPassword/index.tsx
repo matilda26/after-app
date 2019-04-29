@@ -5,9 +5,9 @@ import { userResetCodeSent, userSetUsername } from '@state/actions/login'
 import { Auth } from 'aws-amplify'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ButtonText, ButtonWrapper, ErrorMessage, InputField, InputWrapper, SubmitButton } from '../styles'
-import { Label, Heading, Body } from '../newPassword/styles'
-import { ForgottenPasswordCopyWrapper, ForgottenPasswordFormWrapper, ForgottenPasswordWrapper } from './styles'
+import { ButtonText, ButtonWrapper, ErrorMessage, InputField, InputWrapper, SubmitButton, Label } from '../styles'
+import { ForgottenPasswordWrapper } from './styles'
+import { colours } from '@styles/index'
 
 interface IProps {
   httpState: any,
@@ -77,21 +77,24 @@ class ForgottenPassword extends Component<IProps, IState> {
   render() {
     return (
       <ForgottenPasswordWrapper>
-        <ForgottenPasswordCopyWrapper>
-          <Heading>Forgot Password?</Heading>
-          <Body>Enter email address and we will send you a link to reset your password.</Body>
-        </ForgottenPasswordCopyWrapper>
-        <ForgottenPasswordFormWrapper>
+        <>
           <InputWrapper>
             <Label>Email address</Label>
-            <InputField hasErrors={this.state.hasErrors && this.state.usernameErrorMessage} value={this.state.username} keyboardType='email-address' autoCapitalize='none' onChangeText={(text) => this.setState({ username: text })} textContentType='emailAddress' />
+            <InputField
+              hasErrors={this.state.hasErrors && this.state.usernameErrorMessage} value={this.state.username}
+              keyboardType='email-address'
+              autoCapitalize='none'
+              onChangeText={(text) => this.setState({ username: text })}
+              textContentType='emailAddress'
+              selectionColor={colours.white.base}
+            />
             <ErrorMessage>{this.state.usernameErrorMessage}</ErrorMessage>
           </InputWrapper>
-        </ForgottenPasswordFormWrapper>
+        </>
         <ButtonWrapper>
-          <SubmitButton onPress={() => this.handlePasswordReset()}>
+          <SubmitButton onPress={() => this.handlePasswordReset()} disabled={this.state.username === null || this.state.username.length === 0}>
             {!(this.props.httpState.loading && this.props.httpState.source === 'resetPassword') && (
-              <ButtonText>Send</ButtonText>
+              <ButtonText disabled={this.state.username === null || this.state.username.length === 0}>Send</ButtonText>
             )}
             {/* {this.props.httpState.loading && this.props.httpState.source === 'resetPassword' && (
               <LoaderWrapper>

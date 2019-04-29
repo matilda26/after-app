@@ -1,23 +1,31 @@
 import { Arrow } from '@components/navigation/backArrow/styles'
+import ScreenHeader from '@components/screenHeader'
 import { colours } from '@styles/index'
 import React, { Component } from 'react'
-import { Container, IconWrapper, Logo, LogoType, Wrapper } from './styles'
+import { Container, IconWrapper } from './styles'
+import { SafeAreaView } from 'react-native'
 
 interface IProps {
-  navigateBack: () => void,
+  navigateBack?: () => void,
   hideBackArrow: boolean,
+  title?: string
+  subTitle?: string
 }
 
 class LoginHeader extends Component<IProps> {
   render() {
+
+    const { navigateBack, hideBackArrow, title, subTitle } = this.props
+
     return (
-      <Wrapper>
+      <SafeAreaView>
         <Container>
-          <IconWrapper onPress={() => this.props.navigateBack && this.props.navigateBack()} underlayColor='transparent' activeOpacity={0.5}>
-            {!this.props.hideBackArrow ? (<Arrow name='angle-left' iconColour={colours.olive.base} />) : (<></>)}
+          <IconWrapper onPress={() => navigateBack && navigateBack()} underlayColor='transparent' activeOpacity={0.5}>
+            {!hideBackArrow ? (<Arrow name='angle-left' iconColour={colours.white.base} />) : (<></>)}
           </IconWrapper>
         </Container>
-      </Wrapper>
+        <ScreenHeader title={title} colour={colours.white.base} subText={subTitle} addMargin />
+      </SafeAreaView>
     )
   }
 }
