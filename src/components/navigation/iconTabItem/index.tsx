@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { IconItem, Wrapper } from './styles'
+import { IconItem, Label, Wrapper } from './styles'
 
 export interface IProps {
   iconName: any
   focused: boolean
+  label: string
 }
 
 class IconTabItem extends Component<IProps> {
@@ -13,6 +14,7 @@ class IconTabItem extends Component<IProps> {
     const {
       iconName,
       focused,
+      label
     } = this.props
 
     return (
@@ -23,6 +25,7 @@ class IconTabItem extends Component<IProps> {
           name={iconName}
           focused={focused}
         />
+        <Label focused={focused}>{label}</Label>
       </Wrapper>
     )
   }

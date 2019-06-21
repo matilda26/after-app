@@ -16,6 +16,7 @@ const FooterTabNavigator = createBottomTabNavigator(
           <IconTabItem
             iconName={'start'}
             focused={focused}
+            label='The Start'
           />
         ),
         tabBarOnPress: ({ defaultHandler }) => {
@@ -31,6 +32,7 @@ const FooterTabNavigator = createBottomTabNavigator(
           <IconTabItem
             iconName={'middle'}
             focused={focused}
+            label='The Middle'
           />
         ),
         tabBarOnPress: ({ defaultHandler }) => {
@@ -46,6 +48,7 @@ const FooterTabNavigator = createBottomTabNavigator(
           <IconTabItem
             iconName={'end'}
             focused={focused}
+            label='The End'
           />
         ),
         tabBarOnPress: ({ defaultHandler }) => {
@@ -58,14 +61,14 @@ const FooterTabNavigator = createBottomTabNavigator(
     tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {
-        height: 60,
-        borderTopWidth: 0,
+        height: 80,
+        borderTopWidth: 1,
         borderTopColor: colours.olive.base,
+        backgroundColor: colours.white.base,
       },
       showIcon: true,
       showLabel: false,
-      activeBackgroundColor: colours.olive.base,
-      safeAreaInset: { bottom: 'never', top: 'never' }
+      safeAreaInset: { bottom: 'always', top: 'never' }
     },
   },
 )

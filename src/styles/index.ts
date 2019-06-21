@@ -25,6 +25,7 @@ export const colours = {
         light: '#e88659',
     },
     cream: {
+        darker: '#DED9CD',
         dark: '#ecd0c7',
         base: '#fee1d6',
         light: '#fefbf1',
