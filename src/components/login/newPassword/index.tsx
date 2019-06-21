@@ -3,9 +3,13 @@ import { userLoggedIn, userPasswordReset, userRequiresNewPassword, userSessionEx
 import { Auth } from 'aws-amplify'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button } from 'react-native'
-import { ButtonWrapper, ErrorMessage, InputField, InputWrapper } from '../styles'
-import { NewPasswordButtonWrapper, NewPasswordCopyWrapper, NewPasswordFormWrapper, NewPasswordWrapper, Label, Heading, Body } from './styles'
+import { Button, View } from 'react-native'
+import { ButtonWrapper, PageWrapper, InputSpacer } from '../styles'
+import { Message } from './styles'
+import { colours } from '@styles/index'
+import LoginHeader from '../header';
+import LoginInput from '../input';
+import LoginButton from '../loginButton';
 
 interface IProps {
   user?: CognitoUser
@@ -17,6 +21,7 @@ interface IProps {
   dispatchRequestLoading: (value: boolean, source: string) => void
   dispatchUserNewPassword: (user) => void
   dispatchUserSessionExpired: (value) => void
+  navigateBack: () => void
 }
 
 interface IState {
@@ -27,6 +32,7 @@ interface IState {
   confirmPasswordErrorMessage?: string
   codeErrorMessage?: string
   confirmedPassword?: string
+  focusedInput: string
 }
 
 class NewPassword extends Component<IProps, IState> {
@@ -38,6 +44,7 @@ class NewPassword extends Component<IProps, IState> {
     passwordErrorMessage: null,
     confirmPasswordErrorMessage: null,
     codeErrorMessage: null,
+    focusedInput: null
   }
 
   async handleUpdatePassword() {
@@ -144,38 +151,80 @@ class NewPassword extends Component<IProps, IState> {
 
   render() {
     return (
-      <NewPasswordWrapper>
-        <NewPasswordCopyWrapper>
+      <PageWrapper backgroundColour={colours.blue.dark}>
+        <LoginHeader
+          showBackArrow={true}
+          navigateBack={this.props.navigateBack}
+          title='Change password'
+          backLabel='Sign in'
+          subTitle='Please change your password to something more memorable.'
+          colour={colours.white.base}
+        />
+        {/* <Message>Please change your password to something more memorable.</Message> */}
+        {/* <NewPasswordCopyWrapper>
           {this.props.includeResetCode && (<Heading>Forgot Password?</Heading>)}
           {!this.props.includeResetCode && (<Heading>Change Password</Heading>)}
           {this.props.includeResetCode && (<Body>Please enter the 6-digit code we have emailed you, and set a new password</Body>)}
           {!this.props.includeResetCode && (<Body>Please reset the temporary password that we have sent you</Body>)}
-        </NewPasswordCopyWrapper>
-        <NewPasswordFormWrapper>
+        </NewPasswordCopyWrapper> */}
+        <View>
           {this.props.includeResetCode && (
-            <InputWrapper>
-              <Label>6-digit code</Label>
-              <InputField hasErrors={this.state.hasErrors && this.state.codeErrorMessage} maxLength={6} onChangeText={(text) => this.setState({ code: text })} />
-              <ErrorMessage>{this.state.codeErrorMessage}</ErrorMessage>
-            </InputWrapper>
+            <LoginInput
+              colour={colours.white.base}
+              hasErrors={this.state.hasErrors && this.state.codeErrorMessage}
+              focused={this.state.focusedInput === 'code' || (this.state.code !== null && this.state.code.length > 0)}
+              inputLabel='6-digit code'
+              inputValue={this.state.code}
+              keyboardType='number-pad'
+              autoCapitalize='none'
+              textContentType='oneTimeCode'
+              onTextChange={(text) => this.setState({ code: text })}
+              onFocus={() => this.setState({ focusedInput: 'code' })}
+              onBlur={() => this.setState({ focusedInput: null })}
+              errorMessage={this.state.codeErrorMessage}
+              secureTextEntry={false}
+            />
           )}
-          <InputWrapper>
-            <Label>Password (8+ characters)</Label>
-            <InputField hasErrors={this.state.hasErrors && this.state.passwordErrorMessage} autoComplete='password' textContentType='password' onChangeText={(text) => this.setState({ password: text })} secureTextEntry={true} />
-            <ErrorMessage>{this.state.passwordErrorMessage}</ErrorMessage>
-          </InputWrapper>
-          <InputWrapper>
-            <Label>Confirm password</Label>
-            <InputField hasErrors={this.state.hasErrors && this.state.confirmPasswordErrorMessage} autoComplete='password' textContentType='password' onChangeText={(text) => this.setState({ confirmedPassword: text })} secureTextEntry={true} />
-            <ErrorMessage>{this.state.confirmPasswordErrorMessage}</ErrorMessage>
-          </InputWrapper>
-        </NewPasswordFormWrapper>
-        <NewPasswordButtonWrapper>
-          <ButtonWrapper>
-            <Button onPress={() => this.handleUpdatePassword()} title='Reset password and sign in' />
-          </ButtonWrapper>
-        </NewPasswordButtonWrapper>
-      </NewPasswordWrapper>
+          <LoginInput
+            colour={colours.white.base}
+            hasErrors={this.state.hasErrors && this.state.passwordErrorMessage}
+            focused={this.state.focusedInput === 'password' || (this.state.password !== null && this.state.password.length > 0)}
+            inputLabel='Password (8+ characters)'
+            inputValue={this.state.password}
+            keyboardType='default'
+            autoCapitalize='none'
+            textContentType='password'
+            onTextChange={(text) => this.setState({ password: text })}
+            onFocus={() => this.setState({ focusedInput: 'password' })}
+            onBlur={() => this.setState({ focusedInput: null })}
+            errorMessage={this.state.passwordErrorMessage}
+            secureTextEntry={true}
+          />
+          <Message label>New password must contain 8+ characters, 1+ symbol, 1+ number and 1+ capital letter</Message>
+          <LoginInput
+            colour={colours.white.base}
+            hasErrors={this.state.hasErrors && this.state.confirmPasswordErrorMessage}
+            focused={this.state.focusedInput === 'confirmedPassword' || (this.state.confirmedPassword !== null && this.state.confirmedPassword.length > 0)}
+            inputLabel='Confirm password'
+            inputValue={this.state.confirmedPassword}
+            keyboardType='default'
+            autoCapitalize='none'
+            textContentType='password'
+            onTextChange={(text) => this.setState({ confirmedPassword: text })}
+            onFocus={() => this.setState({ focusedInput: 'confirmedPassword' })}
+            onBlur={() => this.setState({ focusedInput: null })}
+            errorMessage={this.state.confirmPasswordErrorMessage}
+            secureTextEntry={true}
+          />
+        </View>
+        <LoginButton
+          disabled={false}
+          onPress={() => this.handleUpdatePassword()}
+          buttonLabel='Reset and sign in'
+          colour={colours.white.base}
+          addSpacer
+        />
+      </PageWrapper>
     )
   }
 }

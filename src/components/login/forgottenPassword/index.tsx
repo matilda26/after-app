@@ -1,13 +1,15 @@
-// import Loader from '@components/loader'
-import { LoaderWrapper } from '@components/login/signInForm/styles'
 import { httpRequestLoading } from '@state/actions/http'
 import { userResetCodeSent, userSetUsername } from '@state/actions/login'
 import { Auth } from 'aws-amplify'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ButtonText, ButtonWrapper, ErrorMessage, InputField, InputWrapper, SubmitButton, Label } from '../styles'
-import { ForgottenPasswordWrapper } from './styles'
+import { PageWrapper } from '../styles'
+import { Message, Spacer } from './styles'
 import { colours } from '@styles/index'
+import LoginInput from '../input'
+import LoginButton from '../loginButton'
+import LoginHeader from '../header'
+import { View } from 'react-native'
 
 interface IProps {
   httpState: any,
@@ -17,6 +19,7 @@ interface IProps {
   dispatchRequestLoading: (value: boolean, source: string) => void,
   dispatchUserResetCodeSent: (value: boolean) => void
   dispatchUserSetUsername: (username: string) => void
+  navigateBack: () => void
 }
 
 interface IState {
@@ -24,6 +27,7 @@ interface IState {
   hasErrors?: boolean,
   usernameErrorMessage?: string
   isSignIn?: boolean
+  focusedInput: 'email' | null
 }
 
 class ForgottenPassword extends Component<IProps, IState> {
@@ -32,6 +36,7 @@ class ForgottenPassword extends Component<IProps, IState> {
     hasErrors: false,
     usernameErrorMessage: null,
     isSignin: false,
+    focusedInput: null
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -76,34 +81,40 @@ class ForgottenPassword extends Component<IProps, IState> {
 
   render() {
     return (
-      <ForgottenPasswordWrapper>
-        <>
-          <InputWrapper>
-            <Label>Email address</Label>
-            <InputField
-              hasErrors={this.state.hasErrors && this.state.usernameErrorMessage} value={this.state.username}
-              keyboardType='email-address'
-              autoCapitalize='none'
-              onChangeText={(text) => this.setState({ username: text })}
-              textContentType='emailAddress'
-              selectionColor={colours.white.base}
-            />
-            <ErrorMessage>{this.state.usernameErrorMessage}</ErrorMessage>
-          </InputWrapper>
-        </>
-        <ButtonWrapper>
-          <SubmitButton onPress={() => this.handlePasswordReset()} disabled={this.state.username === null || this.state.username.length === 0}>
-            {!(this.props.httpState.loading && this.props.httpState.source === 'resetPassword') && (
-              <ButtonText disabled={this.state.username === null || this.state.username.length === 0}>Send</ButtonText>
-            )}
-            {/* {this.props.httpState.loading && this.props.httpState.source === 'resetPassword' && (
-              <LoaderWrapper>
-                <Loader type='button' width={38} height={32} />
-              </LoaderWrapper>
-            )} */}
-          </SubmitButton>
-        </ButtonWrapper>
-      </ForgottenPasswordWrapper>
+      <PageWrapper backgroundColour={colours.pink.light}>
+        <LoginHeader
+          showBackArrow={true}
+          navigateBack={this.props.navigateBack}
+          title='Forgot password'
+          backLabel='Sign in'
+          colour={colours.olive.dark}
+        />
+        <View>
+          <Message>Enter your email and we'll send you a temporary password.</Message>
+          <LoginInput
+            colour={colours.olive.dark}
+            hasErrors={this.state.hasErrors && this.state.usernameErrorMessage}
+            focused={this.state.focusedInput === 'email' || (this.state.username !== null && this.state.username.length > 0)}
+            inputLabel='Email address'
+            inputValue={this.state.username}
+            keyboardType='email-address'
+            autoCapitalize='none'
+            textContentType='emailAddress'
+            onTextChange={(text) => this.setState({ username: text })}
+            onFocus={() => this.setState({ focusedInput: 'email' })}
+            onBlur={() => this.setState({ focusedInput: null })}
+            errorMessage={this.state.usernameErrorMessage}
+            secureTextEntry={false}
+          />
+          <Spacer />
+        </View>
+        <LoginButton
+          onPress={() => this.handlePasswordReset()}
+          disabled={this.state.username === null || this.state.username.length === 0}
+          buttonLabel='Reset password'
+          colour={colours.olive.dark}
+        />
+      </PageWrapper>
     )
   }
 }

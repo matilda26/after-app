@@ -69,48 +69,6 @@
       ]
     },
     {
-      "uid": "b8f392264a5d29d50ab53935f26e28e3",
-      "css": "end",
-      "code": 59398,
-      "src": "custom_icons",
-      "selected": true,
-      "svg": {
-        "path": "M1150 1000H1050V0H1150V1000ZM792.8 450L421.2 77 492 6.4 983.8 500 492 993.6 421.2 923 792.8 550H0V450H792.8Z",
-        "width": 1150
-      },
-      "search": [
-        "end"
-      ]
-    },
-    {
-      "uid": "d78ac1671b8c9302731ee8ca0f49e5d0",
-      "css": "start",
-      "code": 59399,
-      "src": "custom_icons",
-      "selected": true,
-      "svg": {
-        "path": "M0 0L100 0 100 1000H0L0 0ZM357.2 550L728.8 923 658 993.6 166.2 500 658 6.4 728.8 77 357.2 450 1150 450 1150 550 357.2 550Z",
-        "width": 1150
-      },
-      "search": [
-        "start"
-      ]
-    },
-    {
-      "uid": "afa3bbc4aede366374dfff55cf56fca9",
-      "css": "middle",
-      "code": 59400,
-      "src": "custom_icons",
-      "selected": true,
-      "svg": {
-        "path": "M1300 700H0V600H1300V700ZM450 1000H0V900H450V1000ZM1300 400H0V300H1300V400ZM1300 100H0V0H1300V100ZM550 900H650V1000H550V900ZM750 900H850V1000H750V900ZM950 900H1050V1000H950V900Z",
-        "width": 1300
-      },
-      "search": [
-        "middle"
-      ]
-    },
-    {
       "uid": "5f3c7aad0ebd197d87ba903d0bea1e33",
       "css": "tick",
       "code": 59395,
@@ -129,6 +87,54 @@
       "css": "angle-left",
       "code": 61700,
       "src": "fontawesome"
+    },
+    {
+      "uid": "1d35198f5190ec004dd4ec742fbe19ca",
+      "css": "right",
+      "code": 59402,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "711e0f14ebd33c72747734950f122211",
+      "css": "start",
+      "code": 59400,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M500 0H1000V1000H500C223.9 1000 0 776.1 0 500 0 223.9 223.9 0 500 0Z",
+        "width": 1000
+      },
+      "search": [
+        "start"
+      ]
+    },
+    {
+      "uid": "32c78e9ab3e7f8865d4e5102d98bc5b5",
+      "css": "end",
+      "code": 59398,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M500 980.8L19.2 980.8 19.2 19.2 500 19.2C765.5 19.2 980.8 234.5 980.8 500 980.8 765.5 765.5 980.8 500 980.8Z",
+        "width": 1000
+      },
+      "search": [
+        "end"
+      ]
+    },
+    {
+      "uid": "250eab6c185f139c85a575c3644a307d",
+      "css": "middle",
+      "code": 59403,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M19.2 19.2H980.8V980.8H19.2V19.2Z",
+        "width": 1000
+      },
+      "search": [
+        "middle"
+      ]
     }
   ]
 }

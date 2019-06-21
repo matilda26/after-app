@@ -39,13 +39,13 @@ export const colours = {
 }
 
 export const spacing = {
-    xxs: 2,
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-    xxl: 40,
+    xxs: 4,
+    xs: 8,
+    sm: 16,
+    md: 24,
+    lg: 32,
+    xl: 40,
+    xxl: 60,
 }
 
 export const typeSizes = {
@@ -61,7 +61,7 @@ export const typeSizes = {
 }
 
 export const fonts = {
-    book: 'Gotham-Book',
-    medium: 'Gotham-Medium',
-    bold: 'Gotham-Bold',
+    book: 'TT Commons Regular',
+    medium: 'TT Commons Regular',
+    bold: 'TT Commons Regular',
 }

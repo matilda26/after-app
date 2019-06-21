@@ -1,14 +1,7 @@
-import { spacing, typeSizes } from '@styles/index'
+import { spacing, typeSizes, colours } from '@styles/index'
 import { View, Text } from 'react-native'
 import styled from 'styled-components'
-import { SectionWrapper } from '../styles'
 
-export const NewPasswordWrapper = styled(SectionWrapper)`
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-`
 export const NewPasswordCopyWrapper = styled(View)`
   align-items: center;
   justify-content: center;
@@ -17,17 +10,15 @@ export const NewPasswordCopyWrapper = styled(View)`
   padding-horizontal: ${spacing.lg};
 `
 export const NewPasswordFormWrapper = styled(View)`
-  flex: 2;
-`
-export const NewPasswordButtonWrapper = styled(View)`
-  justify-content: flex-end;
-`
-export const Label = styled(Text)`
-  font-size: ${typeSizes.small};
 `
 export const Heading = styled(Text)`
   font-size: ${typeSizes.h5};
 `
-export const Body = styled(Text)`
-  font-size: ${typeSizes.body};
+export const Message = styled(Text)`
+  font-size: ${(props: any) => props.label ? typeSizes.small : typeSizes.large};
+  line-height: ${(props: any) => props.label ? typeSizes.h5 : typeSizes.h3};
+  color: ${colours.white.base};
+  text-align: ${(props: any) => props.label ? 'left' : 'center'};
+  margin-top: ${(props: any) => props.label ? spacing.xs : spacing.lg};
+  margin-bottom: ${(props: any) => props.label ? spacing.md : spacing.lg};
 `

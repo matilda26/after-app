@@ -5,7 +5,8 @@ export interface IProps {
   title?: string
   subText?: string
   colour: string
-  addMargin: any
+  addMargin?: any
+  align?: 'left' | 'center' | 'right'
 }
 
 class ScreenHeader extends Component<IProps> {
@@ -17,12 +18,13 @@ class ScreenHeader extends Component<IProps> {
       subText,
       colour,
       addMargin,
+      align,
     } = this.props
 
     return (
       <>
-        {title && (<Title colour={colour}>{title}</Title>)}
-        {subText && (<SubText colour={colour}>{subText}</SubText>)}
+        {title && (<Title colour={colour} align={align}>{title}</Title>)}
+        {subText && (<SubText colour={colour} align={align}>{subText}</SubText>)}
         {addMargin && (<Spacer />)}
       </>
     )

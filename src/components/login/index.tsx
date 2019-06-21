@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import { Auth } from 'aws-amplify'
 import { connect } from 'react-redux'
 import ForgottenPassword from './forgottenPassword'
-import LoginHeader from './header'
 import NewPassword from './newPassword'
-import OnBoardingSection from './onBoarding'
 import SignInForm from './signInForm'
-import { KeyboardAvoidView, ScrollWrapper } from './styles'
+import { ScrollWrapper } from './styles'
 import { userLoggedIn, userPasswordReset, userRequiresNewPassword, userResetCodeSent } from '@state/actions/login'
-import { spacing } from '@styles/index'
 
 export interface IProps {
   children: any
@@ -85,24 +82,20 @@ class Login extends Component<IProps> {
       return (
         <ScrollWrapper ref={(ref) => this.scrollView = ref}>
           {(this.props.resetPassword && !this.props.resetCodeSent) && (
-            <>
-              <LoginHeader hideBackArrow={false} navigateBack={() => this.navigateBackToLogin()} title='Forgot password' subTitle="Enter your email address and we'll send you a temporary password." />
-              <ForgottenPassword />
-            </>
+            <ForgottenPassword
+              navigateBack={() => this.navigateBackToLogin()}
+            />
           )}
 
           {(this.props.userChallenge || this.props.resetCodeSent) && (
-            <>
-              <LoginHeader hideBackArrow={false} navigateBack={() => this.navigateBackToResetPassword()} title='New password' />
-              <NewPassword includeCode={this.props.resetCodeSent} />
-            </>
+            <NewPassword
+              includeCode={this.props.resetCodeSent}
+              navigateBack={() => this.navigateBackToResetPassword()}
+            />
           )}
 
           {!this.props.userChallenge && !this.props.resetPassword && (
-            <>
-              <LoginHeader hideBackArrow={true} title='Login' />
-              <SignInForm />
-            </>
+            <SignInForm />
           )}
         </ScrollWrapper>
       )

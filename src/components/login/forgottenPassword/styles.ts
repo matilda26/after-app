@@ -1,9 +1,16 @@
-import { spacing } from '@styles/index'
-import { View } from 'react-native'
+import { colours, spacing, fonts, typeSizes } from '@styles/index'
+import { Text, View } from 'react-native'
 import styled from 'styled-components'
 
-export const ForgottenPasswordWrapper = styled(View)`
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+export const Message = styled(Text)`
+  font-family: ${fonts.book};
+  font-size: ${typeSizes.large};
+  color: ${colours.olive.dark};
+  line-height: ${typeSizes.h3};
+  text-align: center;
+  padding-horizontal: ${spacing.md};
+  margin-bottom: ${spacing.xl};
+`
+export const Spacer = styled(View)`
+  height: ${spacing.xxl};
 `

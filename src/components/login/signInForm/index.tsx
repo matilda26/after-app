@@ -12,42 +12,45 @@ import {
 import { colours } from '@styles/index'
 import { Auth } from 'aws-amplify'
 import React, { Component } from 'react'
-import { KeyboardAvoidingView, Linking, Text } from 'react-native'
-
+import { Linking, View } from 'react-native'
+import LoginHeader from '@components/login/header'
 import { connect } from 'react-redux'
-import { ButtonText, ButtonWrapper, CheckboxWrapper, ErrorMessage, InputField, InputWrapper, SectionWrapper, Spacer, SubmitButton, Label, SubLabel, Section, SectionLower } from '../styles'
-import { LoaderWrapper, TextLink } from './styles'
+import { PageWrapper, TextLink, InputSpacer, ButtonWrapper, InputSection } from '../styles'
+import LoginInput from '../input'
+import LoginButton from '../loginButton'
 
 interface IProps {
-  httpState: any,
-  sessionExpired: boolean,
-  resetPassword: boolean,
-  dispatchRequestLoading: () => void,
-  dispatchUserLogin: () => void,
-  dispatchUserNewPassword: () => void,
-  dispatchUserSessionExpired: () => void,
+  httpState: any
+  sessionExpired: boolean
+  resetPassword: boolean
+  dispatchRequestLoading: () => void
+  dispatchUserLogin: () => void
+  dispatchUserNewPassword: () => void
+  dispatchUserSessionExpired: () => void
   dispatchResetPassword: () => void
 }
 
 interface IState {
-  username?: string,
-  password?: string,
-  agreeTerms?: boolean,
-  hasErrors?: boolean,
-  isSignin?: boolean,
-  usernameErrorMessage?: string,
-  passwordErrorMessage?: string,
+  username?: string
+  password?: string
+  agreeTerms?: boolean
+  hasErrors?: boolean
+  isSignin?: boolean
+  usernameErrorMessage?: string
+  passwordErrorMessage?: string
+  focusedInput: 'email' | 'password' | null
 }
 
 class SignInForm extends Component<IProps, IState> {
   state = {
     username: null,
     password: null,
-    agreeTerms: false,
+    agreeTerms: true,
     hasErrors: false,
     isSignin: false,
     usernameErrorMessage: null,
     passwordErrorMessage: null,
+    focusedInput: null,
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -149,57 +152,77 @@ class SignInForm extends Component<IProps, IState> {
     return (!!this.state.isSignin)
   }
 
+  onTextChange(text: string, inputType: string) {
+    if (inputType === 'password') {
+      this.setState({
+        password: text
+      })
+    } else if (inputType === 'username') {
+      this.setState({
+        username: text
+      })
+    }
+  }
+
   render() {
     return (
-      <SectionWrapper>
-        <Section>
-          <InputWrapper>
-            <Label>Email address</Label>
-            <InputField
-              hasErrors={this.state.hasErrors && this.state.usernameErrorMessage}
-              keyboardType='email-address'
-              autoCapitalize='none'
-              value={this.state.username}
-              onChangeText={(text) => this.setState({ username: text })}
-              textContentType='emailAddress'
-              selectionColor={colours.white.base}
-            />
-            <ErrorMessage>{this.state.usernameErrorMessage}</ErrorMessage>
-          </InputWrapper>
-          <InputWrapper>
-            <Label>Password</Label>
-            <SubLabel>8+ characters</SubLabel>
-            <InputField
-              hasErrors={this.state.hasErrors && this.state.passwordErrorMessage}
-              textContentType='password'
-              onChangeText={(text) => this.setState({ password: text })}
-              secureTextEntry={true}
-              selectionColor={colours.white.base}
-            />
-            <ErrorMessage>{this.state.passwordErrorMessage}</ErrorMessage>
-          </InputWrapper>
-        </Section>
-        <SectionLower>
-          <CheckboxWrapper>
+      <PageWrapper backgroundColour={colours.olive.base}>
+        <LoginHeader
+          showBackArrow={false}
+          title='Sign in'
+          colour={colours.white.base}
+        />
+        <InputSection>
+          <LoginInput
+            colour={colours.white.base}
+            hasErrors={this.state.hasErrors && this.state.usernameErrorMessage}
+            focused={this.state.focusedInput === 'email' || (this.state.username !== null && this.state.username.length > 0)}
+            inputLabel='Username'
+            inputValue={this.state.username}
+            keyboardType='email-address'
+            autoCapitalize='none'
+            textContentType='emailAddress'
+            onTextChange={(text) => this.setState({ username: text })}
+            onFocus={() => this.setState({ focusedInput: 'email' })}
+            onBlur={() => this.setState({ focusedInput: null })}
+            errorMessage={this.state.usernameErrorMessage}
+            secureTextEntry={false}
+          />
+          <InputSpacer />
+          <LoginInput
+            colour={colours.white.base}
+            hasErrors={this.state.hasErrors && this.state.passwordErrorMessage}
+            focused={this.state.focusedInput === 'password' || (this.state.password !== null && this.state.password.length > 0)}
+            inputLabel='Password'
+            inputValue={this.state.password}
+            keyboardType='default'
+            autoCapitalize='none'
+            textContentType='password'
+            onTextChange={(text) => this.setState({ password: text })}
+            onFocus={() => this.setState({ focusedInput: 'password' })}
+            onBlur={() => this.setState({ focusedInput: null })}
+            errorMessage={this.state.passwordErrorMessage}
+            secureTextEntry={true}
+          />
+          <ButtonWrapper align='flex-end' addMarginTop>
+            <TextLink onPress={() => this.handlePasswordReset()}>Forgot password?</TextLink>
+          </ButtonWrapper>
+        </InputSection>
+        {/* <CheckboxWrapper>
             <CheckBox disabled={this.isInSignInProcess()} onChange={() => this.handleCheckBoxChange()}>
-              <Label light>
+              <Label light small>
                 I agree to the <TextLink onPress={() => this.handleClick(TERMS_URL)}>Terms of Use</TextLink> and <TextLink onPress={() => this.handleClick(PRIVACY_URL)}>Privacy Policy</TextLink>
               </Label>
             </CheckBox>
-          </CheckboxWrapper>
-          <ButtonWrapper>
-            <SubmitButton disabled={!this.isValidLoginState()} onPress={() => this.handleSignIn()}>
-              {!(this.props.httpState.loading && this.props.httpState.source === 'login') && (
-                <ButtonText disabled={!this.isValidLoginState()}>Sign in</ButtonText>
-              )}
-            </SubmitButton>
-          </ButtonWrapper>
-          <ButtonWrapper center>
-            <TextLink onPress={() => this.handlePasswordReset()}>Forgot Password?</TextLink>
-          </ButtonWrapper>
-          <Spacer />
-        </SectionLower>
-      </SectionWrapper>
+          </CheckboxWrapper> */}
+
+        <LoginButton
+          disabled={!this.isValidLoginState()}
+          onPress={() => this.handleSignIn()}
+          buttonLabel='Sign in'
+          colour={colours.white.base}
+        />
+      </PageWrapper>
     )
   }
 }
