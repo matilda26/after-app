@@ -1,6 +1,10 @@
 import LoginScreen from '@views/login'
 import { createStackNavigator } from 'react-navigation'
 import FooterTabNavigator from '@navigators/footerTabNavigator'
+import { colours, spacing } from '@styles/index'
+import Logo from '@components/navigation/headerLogo'
+import MenuIcon from '@components/navigation/MenuIcon'
+import React from 'react'
 
 const HomeStack = createStackNavigator(
   {
@@ -13,11 +17,20 @@ const HomeStack = createStackNavigator(
     Home: {
       screen: FooterTabNavigator,
       navigationOptions: {
-        header: null,
+        headerRight: <MenuIcon />,
       },
     },
   }, {
     initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colours.cream.light,
+        height: 50,
+        borderBottomColor: colours.cream.light,
+        paddingTop: spacing.xl,
+      },
+      headerTitle: <Logo />,
+    },
   },
 )
 

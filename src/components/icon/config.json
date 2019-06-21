@@ -135,6 +135,20 @@
       "search": [
         "middle"
       ]
+    },
+    {
+      "uid": "465404cda1d5050652b5161680dae3a5",
+      "css": "menu",
+      "code": 59404,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M1333.3 111.1H0V0H1333.3V111.1ZM1333.3 555.6H0V444.4H1333.3V555.6ZM0 1000H1333.3V888.9H0V1000Z",
+        "width": 1333
+      },
+      "search": [
+        "menu"
+      ]
     }
   ]
 }
