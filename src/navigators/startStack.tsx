@@ -4,15 +4,19 @@ import { colours, spacing, typeSizes, fonts } from '@styles/index'
 import StartFacts from '@views/start/startFacts'
 import React from 'react'
 import BackArrow from '@components/navigation/backArrow'
+import Logo from '@components/navigation/headerLogo'
+import MenuIcon from '@components/navigation/MenuIcon';
 
 const StartStack = createStackNavigator(
   {
     StartDashboard: {
       screen: StartDashboard,
+      headerRight: <MenuIcon />
     },
     StartFacts: {
       screen: StartFacts,
       navigationOptions: {
+        headerRight: <MenuIcon />,
         headerLeft: <BackArrow destination={'StartDashboard'} />
       }
     }
@@ -20,21 +24,12 @@ const StartStack = createStackNavigator(
     initialRouteName: 'StartDashboard',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: colours.white.base,
+        backgroundColor: colours.cream.light,
         height: 50,
-        shadowOpacity: 0,
-        elevation: 0,
+        borderBottomColor: colours.cream.light,
         paddingTop: spacing.xl,
-        borderBottomWidth: 0,
-        borderBottomColor: colours.olive.base,
       },
-      headerTitle: 'The Start',
-      headerTitleStyle: {
-        color: colours.olive.base,
-        fontSize: typeSizes.h2,
-        zIndex: 10,
-        fontFamily: fonts.bold
-      },
+      headerTitle: <Logo />,
     },
   },
 )

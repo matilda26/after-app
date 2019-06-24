@@ -17,20 +17,20 @@ const HomeStack = createStackNavigator(
     Home: {
       screen: FooterTabNavigator,
       navigationOptions: {
-        headerRight: <MenuIcon />,
+        header: null,
       },
     },
   }, {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: colours.cream.light,
-        height: 50,
-        borderBottomColor: colours.cream.light,
-        paddingTop: spacing.xl,
-      },
-      headerTitle: <Logo />,
-    },
+    // defaultNavigationOptions: {
+    //   headerStyle: {
+    //     backgroundColor: colours.cream.light,
+    //     height: 50,
+    //     borderBottomColor: colours.cream.light,
+    //     paddingTop: spacing.xl,
+    //   },
+    //   headerTitle: <Logo />,
+    // },
   },
 )
 

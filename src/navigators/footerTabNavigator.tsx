@@ -11,7 +11,7 @@ const FooterTabNavigator = createBottomTabNavigator(
     StartTab: {
       screen: StartStack,
       navigationOptions: {
-        header: null,
+        // header: null,
         tabBarIcon: ({ focused }: { focused: boolean }) => (
           <IconTabItem
             iconName={'start'}
@@ -62,7 +62,7 @@ const FooterTabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       style: {
         height: 80,
-        borderTopWidth: 1,
+        borderTopWidth: 0,
         borderTopColor: colours.olive.base,
         backgroundColor: colours.white.base,
       },
