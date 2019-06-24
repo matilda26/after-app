@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation'
 import FooterTabNavigator from '@navigators/footerTabNavigator'
 import { colours, spacing } from '@styles/index'
 import Logo from '@components/navigation/headerLogo'
-import MenuIcon from '@components/navigation/MenuIcon'
+import MenuIcon from '@components/navigation/menuIcon'
 import React from 'react'
 
 const HomeStack = createStackNavigator(

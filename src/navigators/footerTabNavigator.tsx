@@ -11,7 +11,7 @@ const FooterTabNavigator = createBottomTabNavigator(
     StartTab: {
       screen: StartStack,
       navigationOptions: {
-        // header: null,
+        header: null,
         tabBarIcon: ({ focused }: { focused: boolean }) => (
           <IconTabItem
             iconName={'start'}
@@ -68,7 +68,7 @@ const FooterTabNavigator = createBottomTabNavigator(
       },
       showIcon: true,
       showLabel: false,
-      safeAreaInset: { bottom: 'always', top: 'never' }
+      safeAreaInset: { bottom: 'always', top: 'never' },
     },
   },
 )
