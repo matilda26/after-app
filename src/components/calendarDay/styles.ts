@@ -1,15 +1,18 @@
 import { colours, fonts, spacing, typeSizes } from '@styles/index'
 import styled from 'styled-components'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 
 export const Wrapper = styled(View)`
-  height: 40;
-  width: 40;
-  border-radius: 40;
-  background-color: ${colours.orange.light};
+  height: ${spacing.lg};
+  width: ${spacing.lg}
+  border-radius: ${spacing.lg};
+  background-color: ${(props: any) => props.current ? colours.orange.base : props.hasData ? colours.orange.lighter : '#ffffff'};
+  align-items: center;
+  justify-content: center;
 `
 export const Number = styled(Text)`
   font-size: ${typeSizes.large};
+  line-height: ${spacing.lg};
   font-family: ${fonts.book};
   color: ${(props: any) => props.current ? '#fff' : colours.olive.base};
 `

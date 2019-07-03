@@ -30,7 +30,7 @@ class Calendar extends Component<IProps> {
 						scrollEnabled={true}
 						showScrollIndicator={true}
 						current={'2019-07-03'}
-						onDayPress={(day) => { alert(day) }}
+						onDayPress={(day) => console.log('day')}
 						firstDay={1}
 						theme={{
 							backgroundColor: colours.cream.base,
@@ -57,7 +57,7 @@ class Calendar extends Component<IProps> {
 							textMonthFontSize: typeSizes.h4,
 							textDayHeaderFontSize: typeSizes.large,
 						}}
-						dayComponent={({ date }) => (<CalendarDay number={date.day} />)}
+						dayComponent={({ date }) => (<CalendarDay date={date} />)}
 						markedDates={{
 							'2019-07-03': { textColor: '#fff', color: colours.orange.base, selected: true }
 						}}
@@ -69,7 +69,3 @@ class Calendar extends Component<IProps> {
 }
 
 export default Calendar
-
-
-// if no entries, create entry
-// calendar view

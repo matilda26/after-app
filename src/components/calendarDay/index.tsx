@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 import { Number, Wrapper } from './styles'
+import moment from 'moment'
 
 export interface IProps {
-  number: number
+  date: any
 }
+
 
 class CalendarDay extends Component<IProps> {
   render() {
-    const { number } = this.props
+    const { date } = this.props
+    const markedDates = [
+      '2019-07-01'
+    ]
+    const currentDate = moment().format("YYYY-MM-DD")
     return (
-      <Wrapper>
-        <Number>{number}</Number>
+      <Wrapper current={currentDate === date.dateString} hasData={markedDates.indexOf(date.dateString) !== -1}>
+        <Number current={currentDate === date.dateString}>{date.day}</Number>
       </Wrapper>
     )
   }
