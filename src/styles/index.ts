@@ -20,9 +20,10 @@ export const colours = {
         light: '#d14754',
     },
     orange: {
-        dark: '#b0452b',
-        base: '#e36032',
-        light: '#e88659',
+        dark: '#DC811B',
+        base: '#FF9B21',
+        light: '#FFBA59',
+        lighter: '#FFD783'
     },
     cream: {
         darker: '#DED9CD',

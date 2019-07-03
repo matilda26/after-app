@@ -1,40 +1,38 @@
-import DiaryListing from '@views/middle/diaryListing'
+import Calendar from '@views/middle/calendar'
 import DiaryDetail from '@views/middle/diaryDetail'
 import { createStackNavigator } from 'react-navigation'
+import Logo from '@components/navigation/headerLogo'
 import { colours, spacing, typeSizes, fonts } from '@styles/index'
+import React from 'react'
+import BackArrow from '@components/navigation/backArrow'
+import MenuIcon from '@components/navigation/menuIcon'
 
 const MiddleStack = createStackNavigator(
   {
+    Calendar: {
+      screen: Calendar,
+      navigationOptions: {
+        headerRight: <MenuIcon />
+      }
+    },
     DiaryDetail: {
       screen: DiaryDetail,
       navigationOptions: {
-        header: null,
-      },
+        headerRight: <MenuIcon />,
+        headerLeft: <BackArrow destination={'StartDashboard'} />
+      }
     },
-    DiaryListing: {
-      screen: DiaryListing,
-      navigationOptions: {
-        title: 'The Middle',
-      },
-    },
+
   }, {
-    initialRouteName: 'DiaryListing',
+    initialRouteName: 'Calendar',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: colours.white.base,
+        backgroundColor: colours.cream.light,
         height: 50,
-        shadowOpacity: 0,
-        elevation: 0,
+        borderBottomColor: colours.cream.light,
         paddingTop: spacing.xl,
-        borderBottomWidth: 2,
-        borderBottomColor: colours.olive.base,
       },
-      headerTitleStyle: {
-        color: colours.olive.base,
-        fontSize: typeSizes.h2,
-        zIndex: 10,
-        fontFamily: fonts.bold
-      },
+      headerTitle: <Logo />,
     },
   },
 )

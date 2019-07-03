@@ -6,6 +6,7 @@ import React from 'react'
 import BackArrow from '@components/navigation/backArrow'
 import Logo from '@components/navigation/headerLogo'
 import MenuIcon from '@components/navigation/menuIcon'
+import SettingsScreen from '@views/settings';
 
 const StartStack = createStackNavigator(
   {
@@ -19,6 +20,12 @@ const StartStack = createStackNavigator(
       screen: StartFacts,
       navigationOptions: {
         headerRight: <MenuIcon />,
+        headerLeft: <BackArrow destination={'StartDashboard'} />
+      }
+    },
+    Settings: {
+      screen: SettingsScreen,
+      navigationOptions: {
         headerLeft: <BackArrow destination={'StartDashboard'} />
       }
     }

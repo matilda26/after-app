@@ -7,7 +7,7 @@ class HeaderLogo extends Component {
   render() {
 
     return (
-      <Logo />
+      <Logo name="blob-logo" />
     )
   }
 }

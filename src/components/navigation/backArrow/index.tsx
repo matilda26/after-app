@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Arrow, Wrapper } from './styles'
+import { colours } from '@styles/index'
 import { withNavigation, NavigationScreenProp } from 'react-navigation'
 
 export interface IProps {
@@ -10,13 +11,13 @@ export interface IProps {
 class BackArrow extends Component<IProps> {
 
   onButtonClick = () => {
-
+    this.props.navigation.navigate(this.props.destination)
   }
 
   render() {
 
     return (
-      <Wrapper>
+      <Wrapper underlayColor={colours.cream.light} onPress={this.onButtonClick}>
         <Arrow name='angle-left' />
       </Wrapper>
     )
