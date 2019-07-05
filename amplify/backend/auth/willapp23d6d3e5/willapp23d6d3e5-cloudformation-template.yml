@@ -188,10 +188,10 @@ Resources:
       Policies:
         PasswordPolicy:
           MinimumLength: !Ref passwordPolicyMinLength
-          RequireLowercase: true
-          RequireNumbers: true
-          RequireSymbols: true
-          RequireUppercase: true
+          RequireLowercase: false
+          RequireNumbers: false
+          RequireSymbols: false
+          RequireUppercase: false
           
       MfaConfiguration: !Ref mfaConfiguration
       SmsVerificationMessage: !Ref smsVerificationMessage
@@ -204,7 +204,7 @@ Resources:
   # Depends on UserPool for ID reference
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
-      ClientName: cognito111ff6ff_app_clientWeb
+      ClientName: willap23d6d3e5_app_clientWeb
       
       RefreshTokenValidity: !Ref userpoolClientRefreshTokenValidity
       UserPoolId: !Ref UserPool
@@ -336,7 +336,7 @@ Resources:
   # Always created
     Type: AWS::Cognito::IdentityPool
     Properties: 
-      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'cognito111ff6ff_identitypool_111ff6ff', !Join ['',['cognito111ff6ff_identitypool_111ff6ff', '__', !Ref env]]]
+      IdentityPoolName: !If [ShouldNotCreateEnvResources, 'willapp23d6d3e5_identitypool_23d6d3e5', !Join ['',['willapp23d6d3e5_identitypool_23d6d3e5', '__', !Ref env]]]
       
       CognitoIdentityProviders:
         - ClientId:  !Ref UserPoolClient

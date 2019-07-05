@@ -1,4 +1,4 @@
 {
-    "AppSyncApiName": "afterapp",
+    "AppSyncApiName": "willapp",
     "DynamoDBBillingMode": "PAY_PER_REQUEST"
 }

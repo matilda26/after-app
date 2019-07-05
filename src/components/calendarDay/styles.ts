@@ -1,8 +1,8 @@
 import { colours, fonts, spacing, typeSizes } from '@styles/index'
 import styled from 'styled-components'
-import { Text, View } from 'react-native'
+import { Text, View, TouchableHighlight } from 'react-native'
 
-export const Wrapper = styled(View)`
+export const Wrapper = styled(TouchableHighlight)`
   height: ${spacing.lg};
   width: ${spacing.lg}
   border-radius: ${spacing.lg};

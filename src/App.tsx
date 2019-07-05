@@ -6,7 +6,7 @@ import Login from '@components/login'
 import { connect } from 'react-redux'
 
 import Amplify from '@aws-amplify/core'
-import config from './aws-exports'
+import config from '../aws-exports'
 Amplify.configure(config)
 
 interface IProps {
@@ -30,6 +30,7 @@ class App extends Component<IProps> {
   }
 
   render() {
+    console.log('user', this.props.user)
     return (
       <>
         {this.state.fontLoaded && (

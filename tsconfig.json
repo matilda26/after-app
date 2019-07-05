@@ -18,11 +18,20 @@
             "@constants/*": [
                 "src/constants/*"
             ],
+            "@graphql/*": [
+                "src/graphql/*"
+            ],
+            "@models/*": [
+                "src/models/*"
+            ],
             "@navigators/*": [
                 "src/navigators/*"
             ],
             "@styles/*": [
                 "src/styles/*"
+            ],
+            "@services/*": [
+                "src/services/*"
             ],
             "@state/*": [
                 "src/state/*"

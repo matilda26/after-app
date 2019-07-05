@@ -1,5 +1,5 @@
 import Calendar from '@views/middle/calendar'
-import DiaryDetail from '@views/middle/diaryDetail'
+import DayDetail from '@views/middle/dayDetail'
 import { createStackNavigator } from 'react-navigation'
 import Logo from '@components/navigation/headerLogo'
 import { colours, spacing, typeSizes, fonts } from '@styles/index'
@@ -15,11 +15,11 @@ const MiddleStack = createStackNavigator(
         headerRight: <MenuIcon />
       }
     },
-    DiaryDetail: {
-      screen: DiaryDetail,
+    DayDetail: {
+      screen: DayDetail,
       navigationOptions: {
         headerRight: <MenuIcon />,
-        headerLeft: <BackArrow destination={'StartDashboard'} />
+        headerLeft: <BackArrow destination={'Calendar'} />
       }
     },
 

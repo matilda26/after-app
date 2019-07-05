@@ -1,12 +1,12 @@
 {
 	"auth": {
-		"cognito111ff6ff": {
+		"willapp23d6d3e5": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
 	},
 	"api": {
-		"afterapp": {
+		"willapp": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {

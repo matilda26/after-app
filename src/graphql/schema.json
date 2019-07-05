@@ -15,7 +15,7 @@
         "name" : "Query",
         "description" : null,
         "fields" : [ {
-          "name" : "getCloseFriend",
+          "name" : "getDiaryEntry",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -33,20 +33,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "CloseFriend",
+            "name" : "DiaryEntry",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listCloseFriends",
+          "name" : "listDiaryEntrys",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelCloseFriendFilterInput",
+              "name" : "ModelDiaryEntryFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -71,7 +71,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelCloseFriendConnection",
+            "name" : "ModelDiaryEntryConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -83,7 +83,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "CloseFriend",
+        "name" : "DiaryEntry",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -101,22 +101,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "name",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "howYouMet",
+          "name" : "date",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -127,7 +112,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "whenYouMet",
+          "name" : "userID",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -138,29 +123,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "favouriteSaying",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "favouriteTraits",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "message",
+          "name" : "diaryBody",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -195,7 +158,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelCloseFriendConnection",
+        "name" : "ModelDiaryEntryConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -206,7 +169,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "CloseFriend",
+              "name" : "DiaryEntry",
               "ofType" : null
             }
           },
@@ -230,7 +193,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelCloseFriendFilterInput",
+        "name" : "ModelDiaryEntryFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -243,7 +206,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
+          "name" : "date",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -252,7 +215,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "howYouMet",
+          "name" : "userID",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -261,34 +224,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "whenYouMet",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "favouriteSaying",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "favouriteTraits",
-          "description" : null,
-          "type" : {
-            "kind" : "INPUT_OBJECT",
-            "name" : "ModelStringFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "message",
+          "name" : "diaryBody",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -304,7 +240,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelCloseFriendFilterInput",
+              "name" : "ModelDiaryEntryFilterInput",
               "ofType" : null
             }
           },
@@ -317,7 +253,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelCloseFriendFilterInput",
+              "name" : "ModelDiaryEntryFilterInput",
               "ofType" : null
             }
           },
@@ -327,7 +263,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelCloseFriendFilterInput",
+            "name" : "ModelDiaryEntryFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -555,7 +491,7 @@
         "name" : "Mutation",
         "description" : null,
         "fields" : [ {
-          "name" : "createCloseFriend",
+          "name" : "createDiaryEntry",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -565,7 +501,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateCloseFriendInput",
+                "name" : "CreateDiaryEntryInput",
                 "ofType" : null
               }
             },
@@ -573,13 +509,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "CloseFriend",
+            "name" : "DiaryEntry",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateCloseFriend",
+          "name" : "updateDiaryEntry",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -589,7 +525,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateCloseFriendInput",
+                "name" : "UpdateDiaryEntryInput",
                 "ofType" : null
               }
             },
@@ -597,13 +533,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "CloseFriend",
+            "name" : "DiaryEntry",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteCloseFriend",
+          "name" : "deleteDiaryEntry",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -613,7 +549,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteCloseFriendInput",
+                "name" : "DeleteDiaryEntryInput",
                 "ofType" : null
               }
             },
@@ -621,7 +557,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "CloseFriend",
+            "name" : "DiaryEntry",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -633,7 +569,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateCloseFriendInput",
+        "name" : "CreateDiaryEntryInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -646,20 +582,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
-          "description" : null,
-          "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "howYouMet",
+          "name" : "date",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -668,7 +591,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "whenYouMet",
+          "name" : "userID",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -677,25 +600,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "favouriteSaying",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "favouriteTraits",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "message",
+          "name" : "diaryBody",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -709,7 +614,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateCloseFriendInput",
+        "name" : "UpdateDiaryEntryInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -726,7 +631,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
+          "name" : "date",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -735,7 +640,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "howYouMet",
+          "name" : "userID",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -744,34 +649,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "whenYouMet",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "favouriteSaying",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "favouriteTraits",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "message",
+          "name" : "diaryBody",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -785,7 +663,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteCloseFriendInput",
+        "name" : "DeleteDiaryEntryInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -806,34 +684,34 @@
         "name" : "Subscription",
         "description" : null,
         "fields" : [ {
-          "name" : "onCreateCloseFriend",
+          "name" : "onCreateDiaryEntry",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "CloseFriend",
+            "name" : "DiaryEntry",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateCloseFriend",
+          "name" : "onUpdateDiaryEntry",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "CloseFriend",
+            "name" : "DiaryEntry",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteCloseFriend",
+          "name" : "onDeleteDiaryEntry",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "CloseFriend",
+            "name" : "DiaryEntry",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -842,25 +720,6 @@
         "inputFields" : null,
         "interfaces" : [ ],
         "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "ENUM",
-        "name" : "ModelSortDirection",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : [ {
-          "name" : "ASC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "DESC",
-          "description" : null,
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        } ],
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
@@ -955,6 +814,25 @@
         } ],
         "interfaces" : null,
         "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "ENUM",
+        "name" : "ModelSortDirection",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : [ {
+          "name" : "ASC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "DESC",
+          "description" : null,
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        } ],
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
@@ -1879,9 +1757,55 @@
         "onFragment" : false,
         "onField" : true
       }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_auth",
         "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
+        "args" : [ {
+          "name" : "cognito_groups",
+          "description" : "List of cognito user pool groups which have access on this field",
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_oidc",
+        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_cognito_user_pools",
+        "description" : "Tells the service this field/object has access authorized by a Cognito User Pools token.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ {
           "name" : "cognito_groups",
           "description" : "List of cognito user pool groups which have access on this field",
@@ -1942,19 +1866,18 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_iam",
+        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

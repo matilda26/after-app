@@ -1,39 +1,30 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const createCloseFriend = `mutation CreateCloseFriend($input: CreateCloseFriendInput!) {
-  createCloseFriend(input: $input) {
+export const createDiaryEntry = `mutation CreateDiaryEntry($input: CreateDiaryEntryInput!) {
+  createDiaryEntry(input: $input) {
     id
-    name
-    howYouMet
-    whenYouMet
-    favouriteSaying
-    favouriteTraits
-    message
+    date
+    userID
+    diaryBody
   }
 }
 `;
-export const updateCloseFriend = `mutation UpdateCloseFriend($input: UpdateCloseFriendInput!) {
-  updateCloseFriend(input: $input) {
+export const updateDiaryEntry = `mutation UpdateDiaryEntry($input: UpdateDiaryEntryInput!) {
+  updateDiaryEntry(input: $input) {
     id
-    name
-    howYouMet
-    whenYouMet
-    favouriteSaying
-    favouriteTraits
-    message
+    date
+    userID
+    diaryBody
   }
 }
 `;
-export const deleteCloseFriend = `mutation DeleteCloseFriend($input: DeleteCloseFriendInput!) {
-  deleteCloseFriend(input: $input) {
+export const deleteDiaryEntry = `mutation DeleteDiaryEntry($input: DeleteDiaryEntryInput!) {
+  deleteDiaryEntry(input: $input) {
     id
-    name
-    howYouMet
-    whenYouMet
-    favouriteSaying
-    favouriteTraits
-    message
+    date
+    userID
+    diaryBody
   }
 }
 `;

@@ -1,0 +1,6 @@
+type DiaryEntry @model {
+  id: ID!
+  date: String
+  userID: String
+  diaryBody: String
+}

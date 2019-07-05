@@ -1,41 +1,32 @@
 /* tslint:disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateCloseFriendInput = {
+export type CreateDiaryEntryInput = {
   id?: string | null,
-  name: string,
-  howYouMet?: string | null,
-  whenYouMet?: string | null,
-  favouriteSaying?: string | null,
-  favouriteTraits?: string | null,
-  message?: string | null,
+  date?: string | null,
+  userID?: string | null,
+  diaryBody?: string | null,
 };
 
-export type UpdateCloseFriendInput = {
+export type UpdateDiaryEntryInput = {
   id: string,
-  name?: string | null,
-  howYouMet?: string | null,
-  whenYouMet?: string | null,
-  favouriteSaying?: string | null,
-  favouriteTraits?: string | null,
-  message?: string | null,
+  date?: string | null,
+  userID?: string | null,
+  diaryBody?: string | null,
 };
 
-export type DeleteCloseFriendInput = {
+export type DeleteDiaryEntryInput = {
   id?: string | null,
 };
 
-export type ModelCloseFriendFilterInput = {
+export type ModelDiaryEntryFilterInput = {
   id?: ModelIDFilterInput | null,
-  name?: ModelStringFilterInput | null,
-  howYouMet?: ModelStringFilterInput | null,
-  whenYouMet?: ModelStringFilterInput | null,
-  favouriteSaying?: ModelStringFilterInput | null,
-  favouriteTraits?: ModelStringFilterInput | null,
-  message?: ModelStringFilterInput | null,
-  and?: Array< ModelCloseFriendFilterInput | null > | null,
-  or?: Array< ModelCloseFriendFilterInput | null > | null,
-  not?: ModelCloseFriendFilterInput | null,
+  date?: ModelStringFilterInput | null,
+  userID?: ModelStringFilterInput | null,
+  diaryBody?: ModelStringFilterInput | null,
+  and?: Array< ModelDiaryEntryFilterInput | null > | null,
+  or?: Array< ModelDiaryEntryFilterInput | null > | null,
+  not?: ModelDiaryEntryFilterInput | null,
 };
 
 export type ModelIDFilterInput = {
@@ -64,132 +55,108 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null,
 };
 
-export type CreateCloseFriendMutationVariables = {
-  input: CreateCloseFriendInput,
+export type CreateDiaryEntryMutationVariables = {
+  input: CreateDiaryEntryInput,
 };
 
-export type CreateCloseFriendMutation = {
-  createCloseFriend:  {
-    __typename: "CloseFriend",
+export type CreateDiaryEntryMutation = {
+  createDiaryEntry:  {
+    __typename: "DiaryEntry",
     id: string,
-    name: string,
-    howYouMet: string | null,
-    whenYouMet: string | null,
-    favouriteSaying: string | null,
-    favouriteTraits: string | null,
-    message: string | null,
+    date: string | null,
+    userID: string | null,
+    diaryBody: string | null,
   } | null,
 };
 
-export type UpdateCloseFriendMutationVariables = {
-  input: UpdateCloseFriendInput,
+export type UpdateDiaryEntryMutationVariables = {
+  input: UpdateDiaryEntryInput,
 };
 
-export type UpdateCloseFriendMutation = {
-  updateCloseFriend:  {
-    __typename: "CloseFriend",
+export type UpdateDiaryEntryMutation = {
+  updateDiaryEntry:  {
+    __typename: "DiaryEntry",
     id: string,
-    name: string,
-    howYouMet: string | null,
-    whenYouMet: string | null,
-    favouriteSaying: string | null,
-    favouriteTraits: string | null,
-    message: string | null,
+    date: string | null,
+    userID: string | null,
+    diaryBody: string | null,
   } | null,
 };
 
-export type DeleteCloseFriendMutationVariables = {
-  input: DeleteCloseFriendInput,
+export type DeleteDiaryEntryMutationVariables = {
+  input: DeleteDiaryEntryInput,
 };
 
-export type DeleteCloseFriendMutation = {
-  deleteCloseFriend:  {
-    __typename: "CloseFriend",
+export type DeleteDiaryEntryMutation = {
+  deleteDiaryEntry:  {
+    __typename: "DiaryEntry",
     id: string,
-    name: string,
-    howYouMet: string | null,
-    whenYouMet: string | null,
-    favouriteSaying: string | null,
-    favouriteTraits: string | null,
-    message: string | null,
+    date: string | null,
+    userID: string | null,
+    diaryBody: string | null,
   } | null,
 };
 
-export type GetCloseFriendQueryVariables = {
+export type GetDiaryEntryQueryVariables = {
   id: string,
 };
 
-export type GetCloseFriendQuery = {
-  getCloseFriend:  {
-    __typename: "CloseFriend",
+export type GetDiaryEntryQuery = {
+  getDiaryEntry:  {
+    __typename: "DiaryEntry",
     id: string,
-    name: string,
-    howYouMet: string | null,
-    whenYouMet: string | null,
-    favouriteSaying: string | null,
-    favouriteTraits: string | null,
-    message: string | null,
+    date: string | null,
+    userID: string | null,
+    diaryBody: string | null,
   } | null,
 };
 
-export type ListCloseFriendsQueryVariables = {
-  filter?: ModelCloseFriendFilterInput | null,
+export type ListDiaryEntrysQueryVariables = {
+  filter?: ModelDiaryEntryFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListCloseFriendsQuery = {
-  listCloseFriends:  {
-    __typename: "ModelCloseFriendConnection",
+export type ListDiaryEntrysQuery = {
+  listDiaryEntrys:  {
+    __typename: "ModelDiaryEntryConnection",
     items:  Array< {
-      __typename: "CloseFriend",
+      __typename: "DiaryEntry",
       id: string,
-      name: string,
-      howYouMet: string | null,
-      whenYouMet: string | null,
-      favouriteSaying: string | null,
-      favouriteTraits: string | null,
-      message: string | null,
+      date: string | null,
+      userID: string | null,
+      diaryBody: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
 };
 
-export type OnCreateCloseFriendSubscription = {
-  onCreateCloseFriend:  {
-    __typename: "CloseFriend",
+export type OnCreateDiaryEntrySubscription = {
+  onCreateDiaryEntry:  {
+    __typename: "DiaryEntry",
     id: string,
-    name: string,
-    howYouMet: string | null,
-    whenYouMet: string | null,
-    favouriteSaying: string | null,
-    favouriteTraits: string | null,
-    message: string | null,
+    date: string | null,
+    userID: string | null,
+    diaryBody: string | null,
   } | null,
 };
 
-export type OnUpdateCloseFriendSubscription = {
-  onUpdateCloseFriend:  {
-    __typename: "CloseFriend",
+export type OnUpdateDiaryEntrySubscription = {
+  onUpdateDiaryEntry:  {
+    __typename: "DiaryEntry",
     id: string,
-    name: string,
-    howYouMet: string | null,
-    whenYouMet: string | null,
-    favouriteSaying: string | null,
-    favouriteTraits: string | null,
-    message: string | null,
+    date: string | null,
+    userID: string | null,
+    diaryBody: string | null,
   } | null,
 };
 
-export type OnDeleteCloseFriendSubscription = {
-  onDeleteCloseFriend:  {
-    __typename: "CloseFriend",
+export type OnDeleteDiaryEntrySubscription = {
+  onDeleteDiaryEntry:  {
+    __typename: "DiaryEntry",
     id: string,
-    name: string,
-    howYouMet: string | null,
-    whenYouMet: string | null,
-    favouriteSaying: string | null,
-    favouriteTraits: string | null,
-    message: string | null,
+    date: string | null,
+    userID: string | null,
+    diaryBody: string | null,
   } | null,
 };

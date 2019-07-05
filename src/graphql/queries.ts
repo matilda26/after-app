@@ -1,32 +1,26 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const getCloseFriend = `query GetCloseFriend($id: ID!) {
-  getCloseFriend(id: $id) {
+export const getDiaryEntry = `query GetDiaryEntry($id: ID!) {
+  getDiaryEntry(id: $id) {
     id
-    name
-    howYouMet
-    whenYouMet
-    favouriteSaying
-    favouriteTraits
-    message
+    date
+    userID
+    diaryBody
   }
 }
 `;
-export const listCloseFriends = `query ListCloseFriends(
-  $filter: ModelCloseFriendFilterInput
+export const listDiaryEntrys = `query ListDiaryEntrys(
+  $filter: ModelDiaryEntryFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listCloseFriends(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listDiaryEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
-      howYouMet
-      whenYouMet
-      favouriteSaying
-      favouriteTraits
-      message
+      date
+      userID
+      diaryBody
     }
     nextToken
   }

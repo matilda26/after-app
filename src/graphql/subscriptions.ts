@@ -1,39 +1,30 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const onCreateCloseFriend = `subscription OnCreateCloseFriend {
-  onCreateCloseFriend {
+export const onCreateDiaryEntry = `subscription OnCreateDiaryEntry {
+  onCreateDiaryEntry {
     id
-    name
-    howYouMet
-    whenYouMet
-    favouriteSaying
-    favouriteTraits
-    message
+    date
+    userID
+    diaryBody
   }
 }
 `;
-export const onUpdateCloseFriend = `subscription OnUpdateCloseFriend {
-  onUpdateCloseFriend {
+export const onUpdateDiaryEntry = `subscription OnUpdateDiaryEntry {
+  onUpdateDiaryEntry {
     id
-    name
-    howYouMet
-    whenYouMet
-    favouriteSaying
-    favouriteTraits
-    message
+    date
+    userID
+    diaryBody
   }
 }
 `;
-export const onDeleteCloseFriend = `subscription OnDeleteCloseFriend {
-  onDeleteCloseFriend {
+export const onDeleteDiaryEntry = `subscription OnDeleteDiaryEntry {
+  onDeleteDiaryEntry {
     id
-    name
-    howYouMet
-    whenYouMet
-    favouriteSaying
-    favouriteTraits
-    message
+    date
+    userID
+    diaryBody
   }
 }
 `;

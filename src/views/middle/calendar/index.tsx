@@ -4,14 +4,25 @@ import { colours, fonts, typeSizes } from '@styles/index'
 import { CalendarList } from 'react-native-calendars'
 import { Wrapper, CalendarWrapper } from './styles'
 import CalendarDay from '@components/calendarDay'
+import { connect } from 'react-redux'
+import { setFocusedDay } from '@state/actions/middle'
+import { withNavigation, NavigationScreenProp } from 'react-navigation'
 
 interface IProps {
-
+	currentFocusedDay: any
+	setCurrentFocusedDay: (day: any) => void
+	navigation: NavigationScreenProp<any, any>
 }
 
 class Calendar extends Component<IProps> {
 
+	onDayPress = (date: any) => {
+		this.props.setCurrentFocusedDay(date)
+		this.props.navigation.navigate('DayDetail')
+	}
+
 	render() {
+		console.log('current day', this.props.currentFocusedDay)
 		return (
 			<>
 				<Wrapper>
@@ -30,7 +41,6 @@ class Calendar extends Component<IProps> {
 						scrollEnabled={true}
 						showScrollIndicator={true}
 						current={'2019-07-03'}
-						onDayPress={(day) => console.log('day')}
 						firstDay={1}
 						theme={{
 							backgroundColor: colours.cream.base,
@@ -57,7 +67,7 @@ class Calendar extends Component<IProps> {
 							textMonthFontSize: typeSizes.h4,
 							textDayHeaderFontSize: typeSizes.large,
 						}}
-						dayComponent={({ date }) => (<CalendarDay date={date} />)}
+						dayComponent={({ date }) => (<CalendarDay date={date} onDayPress={this.onDayPress} />)}
 						markedDates={{
 							'2019-07-03': { textColor: '#fff', color: colours.orange.base, selected: true }
 						}}
@@ -68,4 +78,19 @@ class Calendar extends Component<IProps> {
 	}
 }
 
-export default Calendar
+const mapDispatchToProps = dispatch => ({
+	setCurrentFocusedDay: day => {
+		dispatch(setFocusedDay(day))
+	}
+})
+
+const mapStateToProps = state => {
+	return {
+		currentFocusedDay: state.middleState.focusedDay,
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(withNavigation(Calendar))
