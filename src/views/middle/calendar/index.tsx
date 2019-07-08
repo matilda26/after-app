@@ -37,7 +37,6 @@ class Calendar extends Component<IProps> {
 		if (loading && source === 'calendar') {
 			return <BlobLoader />
 		}
-		console.log('marked', markedDates)
 
 		return (
 			<>
