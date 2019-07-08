@@ -4,6 +4,7 @@ import {
   FILTER_DIARY_ENTRIES,
   TOGGLE_DIARY_MODAL,
   TOGGLE_ENTRY_STATE,
+  FILTER_MARKED_DAYS,
 } from '../actions/middle'
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   currentEntry: null,
   showDiaryModal: false,
   currentEntryState: false,
+  markedDates: []
 }
 
 export const middleState = (state = initialState, action) => {
@@ -40,6 +42,11 @@ export const middleState = (state = initialState, action) => {
       return {
         ...state,
         currentEntryState: action.payload
+      }
+    case FILTER_MARKED_DAYS:
+      return {
+        ...state,
+        markedDates: state.diaryEntries.map(entry => entry.date)
       }
     default:
       return state

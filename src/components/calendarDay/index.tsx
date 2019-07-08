@@ -5,6 +5,7 @@ import { colours } from '@styles/index'
 
 export interface IProps {
   date: any
+  markedDates: string[]
   onDayPress: (day: any) => void
 }
 
@@ -16,13 +17,7 @@ class CalendarDay extends Component<IProps> {
   }
 
   render() {
-    const { date } = this.props
-    const markedDates = [
-      '2019-07-01',
-      '2019-07-03',
-      '2019-06-30',
-      '2019-06-29'
-    ]
+    const { date, markedDates } = this.props
     const currentDate = moment().format("YYYY-MM-DD")
     return (
       <Wrapper

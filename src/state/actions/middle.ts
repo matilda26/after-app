@@ -1,4 +1,4 @@
-import { httpRequestLoading } from "@state/actions/loading"
+import { httpRequestLoading } from "@state/actions/http"
 import DiaryService from "@services/diaryService"
 
 export const SET_FOCUSED_DAY = 'SET_FOCUSED_DAY'
@@ -40,6 +40,14 @@ export const toggleEntryState = (booleanState) => {
   }
 }
 
+export const FILTER_MARKED_DAYS = 'FILTER_MARKED_DAYS'
+export const filterMarkedDays = () => {
+  return {
+    type: FILTER_MARKED_DAYS,
+    // payload: booleanState
+  }
+}
+
 export function fetchDiaryEntries() {
   return (dispatch, getState) => {
     dispatch(httpRequestLoading(true, 'diary'))
@@ -47,6 +55,9 @@ export function fetchDiaryEntries() {
     DiaryService.getAllDiaryEntries()
     .then(data => {
       dispatch(receiveDiaryEntries(data))
+    })
+    .then(() => {
+      dispatch(filterMarkedDays())
     })
     .finally(() => dispatch(httpRequestLoading(false, 'diary')))
   }

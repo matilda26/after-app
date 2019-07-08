@@ -5,17 +5,25 @@ import { CalendarList } from 'react-native-calendars'
 import { Wrapper, CalendarWrapper } from './styles'
 import CalendarDay from '@components/calendarDay'
 import { connect } from 'react-redux'
-import { setFocusedDay, setCurrentDay } from '@state/actions/middle'
+import { setFocusedDay, setCurrentDay, fetchDiaryEntries } from '@state/actions/middle'
+import BlobLoader from '@components/blobLoader'
 import { withNavigation, NavigationScreenProp } from 'react-navigation'
+import moment from 'moment'
 
 interface IProps {
 	currentFocusedDay: any
 	setCurrentFocusedDay: (day: any) => void
 	setCurrentDay: (day: any) => void
+	fetchDiaryEntries: () => void
 	navigation: NavigationScreenProp<any, any>
+	loading: boolean
+	markedDates: string[]
 }
 
 class Calendar extends Component<IProps> {
+	componentDidMount() {
+		this.props.fetchDiaryEntries()
+	}
 
 	onDayPress = (date: any) => {
 		this.props.setCurrentDay(date)
@@ -23,6 +31,12 @@ class Calendar extends Component<IProps> {
 	}
 
 	render() {
+		const {loading, markedDates} = this.props
+
+		if (loading) {
+			return <BlobLoader />
+		}
+
 		return (
 			<>
 				<Wrapper>
@@ -35,12 +49,11 @@ class Calendar extends Component<IProps> {
 				</Wrapper>
 				<CalendarWrapper>
 					<CalendarList
-						onVisibleMonthsChange={(months) => { console.log('now these months are visible', months); }}
 						pastScrollRange={50}
 						futureScrollRange={50}
 						scrollEnabled={true}
 						showScrollIndicator={true}
-						current={'2019-07-03'}
+						current={moment().format('YYYY-MM-DD')}
 						firstDay={1}
 						theme={{
 							backgroundColor: colours.cream.base,
@@ -67,10 +80,7 @@ class Calendar extends Component<IProps> {
 							textMonthFontSize: typeSizes.h4,
 							textDayHeaderFontSize: typeSizes.large,
 						}}
-						dayComponent={({ date }) => (<CalendarDay date={date} onDayPress={this.onDayPress} />)}
-						markedDates={{
-							'2019-07-03': { textColor: '#fff', color: colours.orange.base, selected: true }
-						}}
+						dayComponent={({ date }) => (<CalendarDay date={date} onDayPress={this.onDayPress} markedDates={markedDates}/>)}
 					/>
 				</CalendarWrapper>
 			</>
@@ -80,12 +90,15 @@ class Calendar extends Component<IProps> {
 
 const mapDispatchToProps = dispatch => ({
 	setCurrentFocusedDay: day => dispatch(setFocusedDay(day)),
-	setCurrentDay: day => dispatch(setCurrentDay(day))
+	setCurrentDay: day => dispatch(setCurrentDay(day)),
+	fetchDiaryEntries: () => dispatch(fetchDiaryEntries())
 })
 
 const mapStateToProps = state => {
 	return {
 		currentFocusedDay: state.middleState.focusedDay,
+		loading: state.httpState.loading,
+		markedDates: state.middleState.markedDates
 	}
 }
 
