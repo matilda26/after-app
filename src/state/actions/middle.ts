@@ -33,10 +33,11 @@ export const toggleDiaryModal = () => {
 }
 
 export const TOGGLE_ENTRY_STATE = 'TOGGLE_ENTRY_STATE'
-export const toggleEntryState = (booleanState) => {
+export const toggleEntryState = (booleanState, saved) => {
   return {
     type: TOGGLE_ENTRY_STATE,
-    payload: booleanState
+    payload: booleanState,
+    saved: saved,
   }
 }
 
@@ -57,6 +58,12 @@ export function fetchDiaryEntries() {
       dispatch(receiveDiaryEntries(data))
     })
     .then(() => {
+      const state = getState()
+      const filtered = state.middleState.diaryEntries.filter(entry => entry.diaryBody !== '...')
+      console.log('filtered', filtered)
+      const mapped = filtered.map(e => e.date)
+      console.log('mapped', mapped)
+
       dispatch(filterMarkedDays())
     })
     .finally(() => dispatch(httpRequestLoading(false, 'diary')))

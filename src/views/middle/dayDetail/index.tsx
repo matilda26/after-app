@@ -10,7 +10,7 @@ import BlobLoader from '@components/blobLoader'
 import MainButton from '@components/button'
 import { Modal, TouchableHighlight } from 'react-native'
 import { NavigationScreenProp } from 'react-navigation'
-import { toggleDiaryModal, toggleEntryState } from '@state/actions/middle'
+import { toggleDiaryModal, toggleEntryState, fetchDiaryEntries } from '@state/actions/middle'
 
 
 interface IProps {
@@ -21,7 +21,8 @@ interface IProps {
 	showDiaryModal: boolean
 	navigation: NavigationScreenProp<any, any>
 	toggleDiaryModal: () => void
-	toggleEntryState: (state) => void
+	toggleEntryState: (state, saved) => void
+	fetchDiaryEntries: () => void
 }
 
 interface IState {
@@ -32,7 +33,7 @@ interface IState {
 class DayDetail extends Component<IProps, IState> {
 	state = ({
 		text: '',
-		hasInitialContent: false
+		hasInitialContent: false,
 	})
 
 	componentDidUpdate(prevProps, prevState) {
@@ -63,14 +64,16 @@ class DayDetail extends Component<IProps, IState> {
 		} else {
 			DiaryService.saveEntry(user, this.props.currentFocusedDay, this.state.text)
 		}
+		this.props.toggleEntryState(false, true)
 	}
 
 	exitEntry = () => {
 		if (this.props.showDiaryModal) {
 			this.props.toggleDiaryModal()
 		}
+		this.props.fetchDiaryEntries()
+		this.props.toggleEntryState(false, true)
 		this.props.navigation.navigate('Calendar')
-		this.props.toggleEntryState(false)
 	}
 
 	saveAndExit = async () => {
@@ -89,9 +92,9 @@ class DayDetail extends Component<IProps, IState> {
 	onTextEntry = (text) => {
 		this.setState({ text })
 		if (text.length > 0) {
-			this.props.toggleEntryState(true)
+			this.props.toggleEntryState(true, false)
 		} else {
-			this.props.toggleEntryState(false)
+			this.props.toggleEntryState(false, false)
 			
 		}
 	}
@@ -152,7 +155,8 @@ class DayDetail extends Component<IProps, IState> {
 
 const mapDispatchToProps = dispatch => ({
 	toggleDiaryModal: () => dispatch(toggleDiaryModal()),
-	toggleEntryState: (state) => dispatch(toggleEntryState(state)),
+	toggleEntryState: (state, saved) => dispatch(toggleEntryState(state, saved)),
+	fetchDiaryEntries: () => dispatch(fetchDiaryEntries()),
 })
 
 const mapStateToProps = state => {
