@@ -7,11 +7,12 @@ export const Wrapper = styled(View)`
   width: 100%;
   min-height: 100%;
   padding-horizontal: ${spacing.md};
-  padding-vertical: ${spacing.md};
+  padding-top: ${spacing.md};
   background-color: ${colours.cream.light};
 `
 export const DiaryInput = styled(TextInput)`
   margin-vertical: ${spacing.xl};
+  flex: 1;
 `
 
 export const ModalWrapper = styled(TouchableOpacity)`

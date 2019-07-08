@@ -9,6 +9,7 @@ import { IDiaryEntry } from '@models/diary'
 import BlobLoader from '@components/blobLoader'
 import MainButton from '@components/button'
 import { Modal, TouchableHighlight } from 'react-native'
+import { NavigationScreenProp } from 'react-navigation'
 
 
 interface IProps {
@@ -16,6 +17,7 @@ interface IProps {
 	loading: boolean
 	currentEntry: IDiaryEntry
 	user: any
+	navigation: NavigationScreenProp<any, any>
 }
 
 interface IState {
@@ -51,11 +53,22 @@ class DayDetail extends Component<IProps, IState> {
 	}
 
 	exitEntry = () => {
-		
+		this.props.navigation.navigate('Calendar')
 	}
 
-	saveAndExit = () => {
+	saveAndExit = async () => {
+		await this.saveEntry()
+		this.exitEntry()
+	}
 
+	showModal = () => {
+		if (this.state.text.length === 0) {
+			this.exitEntry()
+		} else {
+			this.setState({
+				modalVisible: true
+			})
+		}
 	}
 
 	render() {
@@ -81,7 +94,7 @@ class DayDetail extends Component<IProps, IState> {
 								<StyledText>Are you sure you would like to exit without saving?</StyledText>
 							</PopupTop>
 							<PopupButtonWrapper>
-								<PopupButton underlayColor={colours.orange.light} onPress={this.exitEntry} secondary>
+								<PopupButton underlayColor={colours.cream.light} onPress={this.exitEntry} secondary>
 									<PopupButtonText secondary>Exit without saving</PopupButtonText>
 								</PopupButton>
 								<PopupButton underlayColor={colours.orange.light} onPress={this.saveAndExit}>
@@ -102,9 +115,10 @@ class DayDetail extends Component<IProps, IState> {
 					placeholderTextColor={colours.olive.light}
 					onChangeText={(text) => this.setState({ text })}
 					value={this.state.text}
+					multiline={true}
 				/>
-					<MainButton buttonText='Save' onButtonPress={this.saveEntry} size='large'/>
-					<MainButton buttonText='Cancel' onButtonPress={this.exitEntry} size='small'/>
+					<MainButton buttonText='Save' onButtonPress={this.saveEntry} size='large' disabled={this.state.text.length === 0}/>
+					<MainButton buttonText='Cancel' onButtonPress={this.showModal} size='small' disabled={false}/>
 			</Wrapper>
 		)
 	}
