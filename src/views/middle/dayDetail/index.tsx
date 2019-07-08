@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import ScreenHeader from '@components/screenHeader'
 import { DiaryInput,  PopupWrapper, PopupTop, PopupButton, PopupButtonWrapper, PopupBackground, StyledText, ModalWrapper, PopupButtonText, Separator, Wrapper } from './styles'
-import { colours } from '@styles/index'
+import { colours, fonts, typeSizes, spacing } from '@styles/index'
 import DiaryService from '@services/diaryService'
 import { IDiaryEntry } from '@models/diary'
 import BlobLoader from '@components/blobLoader'
@@ -26,32 +26,43 @@ interface IProps {
 
 interface IState {
 	text: string
-	placeholder: boolean
+	hasInitialContent: boolean
 }
 
 class DayDetail extends Component<IProps, IState> {
 	state = ({
 		text: '',
-		placeholder: false,
+		hasInitialContent: false
 	})
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.currentEntry !== this.props.currentEntry) {
 			if (this.props.currentEntry === undefined) {
 				this.setState({
-					placeholder: true
+					hasInitialContent: false
 				})
 			} else {
-				this.setState({
-					text: this.props.currentEntry.diaryBody
-				})
+				if (this.props.currentEntry.diaryBody === '...') {
+					this.setState({
+						hasInitialContent: false
+					})
+				} else {
+					this.setState({
+						text: this.props.currentEntry.diaryBody,
+						hasInitialContent: true
+					})
+				}
 			}
 		}
 	}
 
 	saveEntry = () => {
 		const user = this.props.user.attributes.sub
-		DiaryService.saveEntry(user, this.props.currentFocusedDay, this.state.text)
+		if (this.state.text.length === 0) {
+			DiaryService.saveEntry(user, this.props.currentFocusedDay, '...')
+		} else {
+			DiaryService.saveEntry(user, this.props.currentFocusedDay, this.state.text)
+		}
 	}
 
 	exitEntry = () => {
@@ -81,6 +92,7 @@ class DayDetail extends Component<IProps, IState> {
 			this.props.toggleEntryState(true)
 		} else {
 			this.props.toggleEntryState(false)
+			
 		}
 	}
 
@@ -129,8 +141,9 @@ class DayDetail extends Component<IProps, IState> {
 					onChangeText={(text) => this.onTextEntry(text)}
 					value={this.state.text}
 					multiline={true}
+					selectionColor={colours.orange.base}
 				/>
-					<MainButton buttonText='Save' onButtonPress={this.saveEntry} size='large' disabled={this.state.text.length === 0}/>
+					<MainButton buttonText='Save' onButtonPress={this.saveEntry} size='large' disabled={this.state.text.length === 0 && !this.state.hasInitialContent}/>
 					<MainButton buttonText='Cancel' onButtonPress={this.showModal} size='small' disabled={false}/>
 			</Wrapper>
 		)

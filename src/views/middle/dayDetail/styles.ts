@@ -13,8 +13,11 @@ export const Wrapper = styled(View)`
 export const DiaryInput = styled(TextInput)`
   margin-vertical: ${spacing.xl};
   flex: 1;
+  font-family: ${fonts.book};
+  font-size: ${typeSizes.large};
+  line-height: ${typeSizes.h3};
+  color: ${colours.olive.base};
 `
-
 export const ModalWrapper = styled(TouchableOpacity)`
   justify-content: center;
   align-items: center;
