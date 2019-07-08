@@ -10,6 +10,7 @@ import BlobLoader from '@components/blobLoader'
 import MainButton from '@components/button'
 import { Modal, TouchableHighlight } from 'react-native'
 import { NavigationScreenProp } from 'react-navigation'
+import { toggleDiaryModal, toggleEntryState } from '@state/actions/middle'
 
 
 interface IProps {
@@ -17,20 +18,21 @@ interface IProps {
 	loading: boolean
 	currentEntry: IDiaryEntry
 	user: any
+	showDiaryModal: boolean
 	navigation: NavigationScreenProp<any, any>
+	toggleDiaryModal: () => void
+	toggleEntryState: (state) => void
 }
 
 interface IState {
 	text: string
 	placeholder: boolean
-	modalVisible: boolean
 }
 
 class DayDetail extends Component<IProps, IState> {
 	state = ({
 		text: '',
 		placeholder: false,
-		modalVisible: true
 	})
 
 	componentDidUpdate(prevProps, prevState) {
@@ -53,7 +55,11 @@ class DayDetail extends Component<IProps, IState> {
 	}
 
 	exitEntry = () => {
+		if (this.props.showDiaryModal) {
+			this.props.toggleDiaryModal()
+		}
 		this.props.navigation.navigate('Calendar')
+		this.props.toggleEntryState(false)
 	}
 
 	saveAndExit = async () => {
@@ -65,14 +71,21 @@ class DayDetail extends Component<IProps, IState> {
 		if (this.state.text.length === 0) {
 			this.exitEntry()
 		} else {
-			this.setState({
-				modalVisible: true
-			})
+			this.props.toggleDiaryModal()
+		}
+	}
+
+	onTextEntry = (text) => {
+		this.setState({ text })
+		if (text.length > 0) {
+			this.props.toggleEntryState(true)
+		} else {
+			this.props.toggleEntryState(false)
 		}
 	}
 
 	render() {
-		const {currentFocusedDay, loading} = this.props
+		const {currentFocusedDay, loading, showDiaryModal} = this.props
 		const momentObject = moment(currentFocusedDay, "YYYY-MM-DD")
 		const formatedDate = momentObject.format('Do MMMM YYYY')
 
@@ -85,10 +98,10 @@ class DayDetail extends Component<IProps, IState> {
 				<Modal 
 					animationType='fade'
 					transparent={true}
-					visible={this.state.modalVisible}
+					visible={showDiaryModal}
 				>
 					<PopupBackground />
-					<ModalWrapper onPress={() => this.setState({modalVisible: false})} activeOpacity={1} >
+					<ModalWrapper onPress={() => this.props.toggleDiaryModal()} activeOpacity={1} >
 						<PopupWrapper>
 							<PopupTop>
 								<StyledText>Are you sure you would like to exit without saving?</StyledText>
@@ -113,7 +126,7 @@ class DayDetail extends Component<IProps, IState> {
 				<DiaryInput
 					placeholder='Start your entry here...'
 					placeholderTextColor={colours.olive.light}
-					onChangeText={(text) => this.setState({ text })}
+					onChangeText={(text) => this.onTextEntry(text)}
 					value={this.state.text}
 					multiline={true}
 				/>
@@ -125,6 +138,8 @@ class DayDetail extends Component<IProps, IState> {
 }
 
 const mapDispatchToProps = dispatch => ({
+	toggleDiaryModal: () => dispatch(toggleDiaryModal()),
+	toggleEntryState: (state) => dispatch(toggleEntryState(state)),
 })
 
 const mapStateToProps = state => {
@@ -133,6 +148,7 @@ const mapStateToProps = state => {
 		currentEntry: state.middleState.currentEntry,
 		loading: state.httpState.loading,
 		user: state.loginState.user,
+		showDiaryModal: state.middleState.showDiaryModal,
 	}
 }
 

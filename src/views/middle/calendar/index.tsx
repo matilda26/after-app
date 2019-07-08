@@ -23,7 +23,6 @@ class Calendar extends Component<IProps> {
 	}
 
 	render() {
-		console.log('current day', this.props.currentFocusedDay)
 		return (
 			<>
 				<Wrapper>
@@ -81,7 +80,7 @@ class Calendar extends Component<IProps> {
 
 const mapDispatchToProps = dispatch => ({
 	setCurrentFocusedDay: day => dispatch(setFocusedDay(day)),
-	setCurrentDay: (day) => dispatch(setCurrentDay(day))
+	setCurrentDay: day => dispatch(setCurrentDay(day))
 })
 
 const mapStateToProps = state => {

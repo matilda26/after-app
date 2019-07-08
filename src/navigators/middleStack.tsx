@@ -19,7 +19,7 @@ const MiddleStack = createStackNavigator(
       screen: DayDetail,
       navigationOptions: {
         headerRight: <MenuIcon />,
-        headerLeft: <BackArrow destination={'Calendar'} />
+        headerLeft: <BackArrow destination={'Calendar'} type='diary'/>
       }
     },
 

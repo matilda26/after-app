@@ -25,6 +25,21 @@ export const filterDiaryEntriesBySelectedDay = (currentEntry) => {
   }
 }
 
+export const TOGGLE_DIARY_MODAL = 'TOGGLE_DIARY_MODAL'
+export const toggleDiaryModal = () => {
+  return {
+    type: TOGGLE_DIARY_MODAL,
+  }
+}
+
+export const TOGGLE_ENTRY_STATE = 'TOGGLE_ENTRY_STATE'
+export const toggleEntryState = (booleanState) => {
+  return {
+    type: TOGGLE_ENTRY_STATE,
+    payload: booleanState
+  }
+}
+
 export function fetchDiaryEntries() {
   return (dispatch, getState) => {
     dispatch(httpRequestLoading(true, 'diary'))
