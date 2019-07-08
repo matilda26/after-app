@@ -5,19 +5,20 @@ import { CalendarList } from 'react-native-calendars'
 import { Wrapper, CalendarWrapper } from './styles'
 import CalendarDay from '@components/calendarDay'
 import { connect } from 'react-redux'
-import { setFocusedDay } from '@state/actions/middle'
+import { setFocusedDay, setCurrentDay } from '@state/actions/middle'
 import { withNavigation, NavigationScreenProp } from 'react-navigation'
 
 interface IProps {
 	currentFocusedDay: any
 	setCurrentFocusedDay: (day: any) => void
+	setCurrentDay: (day: any) => void
 	navigation: NavigationScreenProp<any, any>
 }
 
 class Calendar extends Component<IProps> {
 
 	onDayPress = (date: any) => {
-		this.props.setCurrentFocusedDay(date)
+		this.props.setCurrentDay(date)
 		this.props.navigation.navigate('DayDetail')
 	}
 
@@ -79,9 +80,8 @@ class Calendar extends Component<IProps> {
 }
 
 const mapDispatchToProps = dispatch => ({
-	setCurrentFocusedDay: day => {
-		dispatch(setFocusedDay(day))
-	}
+	setCurrentFocusedDay: day => dispatch(setFocusedDay(day)),
+	setCurrentDay: (day) => dispatch(setCurrentDay(day))
 })
 
 const mapStateToProps = state => {

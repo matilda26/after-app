@@ -1,11 +1,13 @@
 import {
   SET_FOCUSED_DAY,
   RECEIVE_DIARY_ENTRIES,
+  FILTER_DIARY_ENTRIES,
 } from '../actions/middle'
 
 const initialState = {
   focusedDay: null,
-  diaryEntries: []
+  diaryEntries: null,
+  currentEntry: null,
 }
 
 export const middleState = (state = initialState, action) => {
@@ -19,6 +21,11 @@ export const middleState = (state = initialState, action) => {
       return {
         ...state,
         diaryEntries: action.payload,
+      }
+    case FILTER_DIARY_ENTRIES:
+      return {
+        ...state,
+        currentEntry: action.payload[0],
       }
     default:
       return state

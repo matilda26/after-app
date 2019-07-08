@@ -1,7 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify'
 import { createDiaryEntry, deleteDiaryEntry, updateDiaryEntry } from '@graphql/mutations'
 import { listDiaryEntrys } from '@graphql/queries'
-import {IDiaryEntry} from '@models/diary'
+import { IDiaryEntry } from '@models/diary'
 
 class DiaryService {
     async getAllDiaryEntries(): Promise<IDiaryEntry[]> {

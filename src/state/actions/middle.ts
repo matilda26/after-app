@@ -1,5 +1,5 @@
 import { httpRequestLoading } from "@state/actions/loading"
-import DiaryService from "src/services/DiaryService"
+import DiaryService from "@services/diaryService"
 
 export const SET_FOCUSED_DAY = 'SET_FOCUSED_DAY'
 export const setFocusedDay = (day) => {
@@ -17,16 +17,42 @@ export const receiveDiaryEntries = (entries) => {
   }
 }
 
+export const FILTER_DIARY_ENTRIES = 'FILTER_DIARY_ENTRIES'
+export const filterDiaryEntriesBySelectedDay = (currentEntry) => {
+  return {
+    type: FILTER_DIARY_ENTRIES,
+    payload: currentEntry
+  }
+}
+
 export function fetchDiaryEntries() {
   return (dispatch, getState) => {
     dispatch(httpRequestLoading(true, 'diary'))
 
     DiaryService.getAllDiaryEntries()
     .then(data => {
-      const state = getState()
       dispatch(receiveDiaryEntries(data))
     })
     .finally(() => dispatch(httpRequestLoading(false, 'diary')))
   }
 }
 
+export function setCurrentDay(day) {
+  return (dispatch, getState) => {
+    dispatch(httpRequestLoading(true, 'diary'))
+
+    DiaryService.getAllDiaryEntries()
+    .then(data => {
+      dispatch(receiveDiaryEntries(data))
+      dispatch(setFocusedDay(day))
+    })
+    .then(() => {
+      const state = getState()
+      const currentEntry = state.middleState.diaryEntries.filter(entry => entry.userID === state.loginState.user.attributes.sub && entry.date === day)
+      if (currentEntry) {
+        dispatch(filterDiaryEntriesBySelectedDay(currentEntry))
+      }
+    })
+    .finally(() => dispatch(httpRequestLoading(false, 'diary')))
+  }
+}
