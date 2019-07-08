@@ -19,6 +19,7 @@ interface IProps {
 	currentEntry: IDiaryEntry
 	user: any
 	showDiaryModal: boolean
+	source: string
 	navigation: NavigationScreenProp<any, any>
 	toggleDiaryModal: () => void
 	toggleEntryState: (state, saved) => void
@@ -100,11 +101,11 @@ class DayDetail extends Component<IProps, IState> {
 	}
 
 	render() {
-		const {currentFocusedDay, loading, showDiaryModal} = this.props
+		const {currentFocusedDay, loading, showDiaryModal, source} = this.props
 		const momentObject = moment(currentFocusedDay, "YYYY-MM-DD")
 		const formatedDate = momentObject.format('Do MMMM YYYY')
 
-		if (loading) {
+		if (loading && source === 'diaryEntry') {
 			return <BlobLoader />
 		}
 
@@ -164,6 +165,7 @@ const mapStateToProps = state => {
 		currentFocusedDay: state.middleState.focusedDay,
 		currentEntry: state.middleState.currentEntry,
 		loading: state.httpState.loading,
+		source: state.httpState.source,
 		user: state.loginState.user,
 		showDiaryModal: state.middleState.showDiaryModal,
 	}

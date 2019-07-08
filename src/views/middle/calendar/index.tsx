@@ -18,6 +18,7 @@ interface IProps {
 	navigation: NavigationScreenProp<any, any>
 	loading: boolean
 	markedDates: string[]
+	source: string
 }
 
 class Calendar extends Component<IProps> {
@@ -31,9 +32,9 @@ class Calendar extends Component<IProps> {
 	}
 
 	render() {
-		const {loading, markedDates} = this.props
+		const {loading, markedDates, source} = this.props
 
-		if (loading) {
+		if (loading && source === 'calendar') {
 			return <BlobLoader />
 		}
 		console.log('marked', markedDates)
@@ -99,7 +100,8 @@ const mapStateToProps = state => {
 	return {
 		currentFocusedDay: state.middleState.focusedDay,
 		loading: state.httpState.loading,
-		markedDates: state.middleState.markedDates
+		markedDates: state.middleState.markedDates,
+		source: state.httpState.source,
 	}
 }
 

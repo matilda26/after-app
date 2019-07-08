@@ -51,28 +51,22 @@ export const filterMarkedDays = () => {
 
 export function fetchDiaryEntries() {
   return (dispatch, getState) => {
-    dispatch(httpRequestLoading(true, 'diary'))
+    dispatch(httpRequestLoading(true, 'calendar'))
 
     DiaryService.getAllDiaryEntries()
     .then(data => {
       dispatch(receiveDiaryEntries(data))
     })
     .then(() => {
-      const state = getState()
-      const filtered = state.middleState.diaryEntries.filter(entry => entry.diaryBody !== '...')
-      console.log('filtered', filtered)
-      const mapped = filtered.map(e => e.date)
-      console.log('mapped', mapped)
-
       dispatch(filterMarkedDays())
     })
-    .finally(() => dispatch(httpRequestLoading(false, 'diary')))
+    .finally(() => dispatch(httpRequestLoading(false, 'calendar')))
   }
 }
 
 export function setCurrentDay(day) {
   return (dispatch, getState) => {
-    dispatch(httpRequestLoading(true, 'diary'))
+    dispatch(httpRequestLoading(true, 'diaryEntry'))
 
     DiaryService.getAllDiaryEntries()
     .then(data => {
@@ -86,6 +80,6 @@ export function setCurrentDay(day) {
         dispatch(filterDiaryEntriesBySelectedDay(currentEntry))
       }
     })
-    .finally(() => dispatch(httpRequestLoading(false, 'diary')))
+    .finally(() => dispatch(httpRequestLoading(false, 'diaryEntry')))
   }
 }
